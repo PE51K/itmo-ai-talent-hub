@@ -13,6 +13,96 @@
 
 \section{Problem 1}
 
-% Add your content here
+\textbf{Problem.} Sixteen volleyball teams are randomly divided into two groups of eight. What is the probability that the two best teams are placed in different groups?
 
+\textbf{Solution.} Place the best team into an arbitrary group. Among the remaining 15 positions, 7 are in the same group and 8 are in the other group. Therefore, the probability that the second-best team is in the other group is
+\[
+\frac{8}{15}
+\]
+Hence, the required probability is 8/15.
+\section{Problem 2}
+
+\textbf{Problem.} Of the 20 clocks received for repair, 8 require a general cleaning of the mechanism. What is the probability that among 3 clocks taken at random simultaneously, at least two require a general cleaning of the mechanism?
+
+\textbf{Solution.} Let $X$ be the number of clocks among the three that require cleaning. Then $X$ has a hypergeometric distribution with population size $20$, number of ``successes'' $8$, and draws $3$. We need
+\[
+\mathbb{P}(X \ge 2) \;=\; \mathbb{P}(X=2) + \mathbb{P}(X=3)
+= \frac{\binom{8}{2}\binom{12}{1} + \binom{8}{3}\binom{12}{0}}{\binom{20}{3}}
+= \frac{28\cdot 12 + 56\cdot 1}{1140}
+= \frac{392}{1140}
+= \frac{98}{285}
+\approx 0.344.
+\]
+Hence, the required probability is $98/285$.
+\section{Problem 3}
+
+\textbf{Problem.} There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it does not matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
+
+\textbf{Solution.} We are counting the number of ways to partition 20 labeled people into 10 unordered pairs (perfect matchings). Arrange the 20 people in order (20! ways) and group them into consecutive pairs; this overcounts by a factor of 2 for swapping the two players within each pair and by 10! for permuting the pairs. Therefore,
+\[
+\frac{20!}{2^{10}\,10!}
+\]
+Hence, the number of possible matchings is $20!/(2^{10}10!)$.
+\section{Problem 4}
+
+\textbf{Problem.} What is the probability that a point thrown at random into a circle will land inside the square inscribed in it?
+
+\textbf{Solution.} The point is uniformly distributed over the area of the circle, so the probability equals the ratio of the area of the inscribed square to the area of the circle. If the circle has radius $R$, then the square's diagonal is $2R$, hence its side length is $s = \sqrt{2}\,R$ (since $s\sqrt{2} = 2R$). Therefore, the square's area is $s^2 = 2R^2$, while the circle's area is $\pi R^2$. Thus,
+\[
+\mathbb{P} = \frac{\text{area of square}}{\text{area of circle}} = \frac{2R^2}{\pi R^2} = \frac{2}{\pi} \approx 0.6366.
+\]
+Hence, the required probability is $2/\pi$.
+\section{Problem 5}
+
+\textbf{Problem.} Seven passengers were sold 7 tickets in a compartment carriage (9 compartments with 4 seats each). Find the probabilities that the passengers got into:
+\begin{itemize}
+\item a) two compartments;
+\item b) seven compartments;
+\item c) three compartments. Be careful with the counting!
+\end{itemize}
+
+\textbf{Solution.} Treat a ticket as specifying a particular seat. Equivalently, we choose uniformly at random a 7-seat subset from the 36 seats in the carriage. The sample space size is \(\binom{36}{7}\).
+
+a) Two compartments. To place 7 seats across two compartments with at most 4 per compartment, the occupancies must be \(3\) and \(4\). Choose the two compartments \(\binom{9}{2}\), choose which one has 4 seats (2 ways), and then choose the seats inside: \(\binom{4}{4}\) and \(\binom{4}{3}\). Therefore,
+\[
+\mathbb{P}(\text{two compartments})
+= \frac{\binom{9}{2}\cdot 2 \cdot \binom{4}{4}\binom{4}{3}}{\binom{36}{7}}
+= \frac{\binom{9}{2}\cdot 8}{\binom{36}{7}}.
+\]
+
+b) Seven compartments. Then every chosen compartment contains exactly 1 seat; choose the compartments \(\binom{9}{7}\) and the seats \(\binom{4}{1}^7=4^7\):
+\[
+\mathbb{P}(\text{seven compartments})
+= \frac{\binom{9}{7}\cdot 4^7}{\binom{36}{7}}.
+\]
+
+c) Three compartments. The feasible seat-count patterns are \(4\!-\!2\!-\!1\), \(3\!-\!3\!-\!1\), and \(3\!-\!2\!-\!2\). Accounting for permutations of compartments and seat choices within compartments yields
+\[
+6\cdot\binom{4}{4}\binom{4}{2}\binom{4}{1}
++ 3\cdot\binom{4}{3}\binom{4}{3}\binom{4}{1}
++ 3\cdot\binom{4}{3}\binom{4}{2}\binom{4}{2}
+= 768.
+\]
+Hence,
+\[
+\mathbb{P}(\text{three compartments})
+= \frac{\binom{9}{3}\cdot 768}{\binom{36}{7}}.
+\]
+
+\section{Problem 6}
+
+\textbf{Problem.} There are two gold-bearing regions, each divided into four plots. According to forecasts, the first region contains three gold-bearing plots, and the second contains two, but it is not known which ones specifically. A region is chosen at random, and then one plot is randomly purchased within it; this plot turns out to be gold-bearing.
+
+What is the probability of a second successful purchase under the same conditions (i.e., choosing a random plot in the same region)?
+
+\textbf{Solution.} Let $R_1$ denote the region with 3 gold plots out of 4 and $R_2$ the region with 2 gold plots out of 4. With priors $\mathbb{P}(R_1)=\mathbb{P}(R_2)=\tfrac12$ and likelihoods $\mathbb{P}(\text{success}\mid R_1)=\tfrac34$, $\mathbb{P}(\text{success}\mid R_2)=\tfrac12$, Bayes' formula after the first success gives
+\[
+\mathbb{P}(R_1\mid \text{success})=\frac{\tfrac12\cdot\tfrac34}{\tfrac12\cdot\tfrac34+\tfrac12\cdot\tfrac12}=\frac{3}{5},\qquad
+\mathbb{P}(R_2\mid \text{success})=\frac{2}{5}.
+\]
+For the second purchase in the same region without replacement, the success probabilities are $\tfrac{2}{3}$ in $R_1$ and $\tfrac{1}{3}$ in $R_2$. Therefore,
+\[
+\mathbb{P}(\text{second success}\mid \text{first success})=\frac{3}{5}\cdot\frac{2}{3}+\frac{2}{5}\cdot\frac{1}{3}=\frac{8}{15}.
+\]
+Hence, the required probability is $8/15$.
 \end{document}
