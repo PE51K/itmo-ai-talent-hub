@@ -16,11 +16,10 @@
 
 \textbf{Problem.} Sixteen volleyball teams are randomly divided into two groups of eight. What is the probability that the two best teams are placed in different groups?
 
-\textbf{Solution.} Place the best team into an arbitrary group. Among the remaining 15 positions, 7 are in the same group and 8 are in the other group. Therefore, the probability that the second-best team is in the other group is
+\textbf{Solution.} Let's place the best team into an arbitrary group. Among the remaining 15 positions, 7 are in the same group and 8 are in the other group. Therefore, the probability that the second-best team is in the other group is
 \[
 \frac{8}{15}
 \]
-Hence, the required probability is 8/15.
 \section{Problem 2}
 
 \textbf{Problem.} Of the 20 clocks received for repair, 8 require a general cleaning of the mechanism. What is the probability that among 3 clocks taken at random simultaneously, at least two require a general cleaning of the mechanism?
@@ -29,30 +28,24 @@ Hence, the required probability is 8/15.
 \begin{align*}
 \mathbb{P}(X \ge 2) &= \mathbb{P}(X=2) + \mathbb{P}(X=3) \\
 &= \frac{\binom{8}{2}\binom{12}{1} + \binom{8}{3}\binom{12}{0}}{\binom{20}{3}} \\
-&= \frac{28\cdot 12 + 56\cdot 1}{1140} \\
-&= \frac{392}{1140} \\
-&= \frac{98}{285} \\
-&\approx 0.344.
+&= \frac{28\cdot 12 + 56\cdot 1}{1140} = \frac{392}{1140} = \frac{98}{285}.
 \end{align*}
-Hence, the required probability is $98/285$.
 \section{Problem 3}
 
-\textbf{Problem.} There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it \emph{does} matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
+\textbf{Problem.} There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it does matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
 
-\textbf{Solution.} We are counting the number of ways to partition 20 labeled people into 10 \emph{ordered} pairs (assigning white/black in each game). Arrange the 20 people in order ($20!$ ways) and group them into consecutive pairs; take the first in each pair to be White and the second to be Black. This only overcounts by a factor of $10!$ for permuting the pairs (the order of the games). Therefore,
+\textbf{Solution.} We are counting the number of ways to partition 20 labeled people into 10 ordered pairs (assigning white/black in each game). Arrange the 20 people in order ($20!$ ways) and group them into consecutive pairs (1st plays with 2nd, 3rd plays with 4th, etc.). Let's take the first in each pair to be White and the second to be Black (in standard pair division problem we do not care about the order within the pairs, so we also dividing by 2 in factor of number of pairs, but in this case we do care). We should also take into account pairs permutations by dividing by a factor of $10!$. The final formula for the number of possible matchings would be
 \[
-\frac{20!}{10!}.
+\frac{20!}{10!}=670{,}442{,}572{,}800.
 \]
-Hence, the number of possible matchings is $\displaystyle \frac{20!}{10!}=670{,}442{,}572{,}800$.
 \section{Problem 4}
 
 \textbf{Problem.} What is the probability that a point thrown at random into a circle will land inside the square inscribed in it?
 
-\textbf{Solution.} The point is uniformly distributed over the area of the circle, so the probability equals the ratio of the area of the inscribed square to the area of the circle. If the circle has radius $R$, then the square's diagonal is $2R$, hence its side length is $s = \sqrt{2}\,R$ (since $s\sqrt{2} = 2R$). Therefore, the square's area is $s^2 = 2R^2$, while the circle's area is $\pi R^2$. Thus,
+\textbf{Solution.} The point is uniformly distributed over the area of the circle, so the probability equals the ratio of the area of the inscribed square to the area of the circle. If the circle has radius $R$, then the square's diagonal is $2R$, hence its side length is $s = \sqrt{2}\,R$. Therefore, the square's area is $s^2 = 2R^2$, while the circle's area is $\pi R^2$. Thus,
 \[
-\mathbb{P} = \frac{\text{area of square}}{\text{area of circle}} = \frac{2R^2}{\pi R^2} = \frac{2}{\pi} \approx 0.6366.
+\mathbb{P} = \frac{\text{area of square}}{\text{area of circle}} = \frac{2R^2}{\pi R^2} = \frac{2}{\pi}.
 \]
-Hence, the required probability is $2/\pi$.
 \section{Problem 5}
 
 \textbf{Problem.} Seven passengers were sold 7 tickets in a compartment carriage (9 compartments with 4 seats each). Find the probabilities that the passengers got into:
@@ -68,35 +61,29 @@ a) Two compartments. To place 7 seats across two compartments with at most 4 per
 \begin{align*}
 \mathbb{P}(\text{two compartments})
 &= \frac{\binom{9}{2}\cdot 2 \cdot \binom{4}{4}\binom{4}{3}}{\binom{36}{7}} \\
-&= \frac{\binom{9}{2}\cdot 8}{\binom{36}{7}} \\
-&= \frac{36 \cdot 8}{8{,}347{,}680} \\
-&= \frac{288}{8{,}347{,}680} \\
-&\approx 0.0000345.
+&= \frac{36 \cdot 8}{8{,}347{,}680} = \frac{288}{8{,}347{,}680}.
 \end{align*}
 
 b) Seven compartments. Then every chosen compartment contains exactly 1 seat; choose the compartments \(\binom{9}{7}\) and the seats \(\binom{4}{1}^7=4^7\):
 \begin{align*}
 \mathbb{P}(\text{seven compartments})
 &= \frac{\binom{9}{7}\cdot 4^7}{\binom{36}{7}} \\
-&= \frac{36 \cdot 16{,}384}{8{,}347{,}680} \\
-&= \frac{589{,}824}{8{,}347{,}680} \\
-&\approx 0.0707.
+&= \frac{36 \cdot 16384}{8347680} = \frac{589824}{8347680}.
 \end{align*}
 
-c) Three compartments. The feasible seat-count patterns are \(4\!-\!2\!-\!1\), \(3\!-\!3\!-\!1\), and \(3\!-\!2\!-\!2\). Accounting for permutations of compartments and seat choices within compartments yields
-\[
-6\cdot\binom{4}{4}\binom{4}{2}\binom{4}{1}
-+ 3\cdot\binom{4}{3}\binom{4}{3}\binom{4}{1}
-+ 3\cdot\binom{4}{3}\binom{4}{2}\binom{4}{2}
-= 144 + 192 + 432 = 768.
-\]
-Hence,
+c) Three compartments. The only feasible seat-count patterns are \(4\!-\!2\!-\!1\), \(3\!-\!3\!-\!1\), and \(3\!-\!2\!-\!2\).
+Choose the three compartments \(\binom{9}{3}\), assign which compartment gets which count
+(\(3!=6\) ways for \(4\!-\!2\!-\!1\); \(3\) ways for \(3\!-\!3\!-\!1\); \(3\) ways for \(3\!-\!2\!-\!2\)),
+and then choose seats inside each used compartment (using \(\binom{4}{r}\) for \(r\) seats). Therefore,
 \begin{align*}
 \mathbb{P}(\text{three compartments})
-&= \frac{\binom{9}{3}\cdot 768}{\binom{36}{7}} \\
-&= \frac{84 \cdot 768}{8{,}347{,}680} \\
-&= \frac{64{,}512}{8{,}347{,}680} \\
-&\approx 0.0077.
+&= \frac{\binom{9}{3}\Big(6\binom{4}{4}\binom{4}{2}\binom{4}{1}
++3\binom{4}{3}\binom{4}{3}\binom{4}{1}
++3\binom{4}{3}\binom{4}{2}\binom{4}{2}\Big)}{\binom{36}{7}} \\
+&= \frac{84\Big(6\cdot 1\cdot 6\cdot 4 \;+\; 3\cdot 4\cdot 4\cdot 4 \;+\; 3\cdot 4\cdot 6\cdot 6\Big)}{8{,}347{,}680} \\
+&= \frac{84\,(144+192+432)}{8{,}347{,}680}
+= \frac{84\cdot 768}{8{,}347{,}680}
+= \frac{64{,}512}{8{,}347{,}680}.
 \end{align*}
 
 \section{Problem 6}
@@ -106,13 +93,13 @@ Hence,
 What is the probability of a second successful purchase under the same conditions (i.e., choosing a random plot in the same region)?
 
 \textbf{Solution.} Let $R_1$ denote the region with 3 gold plots out of 4 and $R_2$ the region with 2 gold plots out of 4. With priors $\mathbb{P}(R_1)=\mathbb{P}(R_2)=\tfrac12$ and likelihoods $\mathbb{P}(\text{success}\mid R_1)=\tfrac34$, $\mathbb{P}(\text{success}\mid R_2)=\tfrac12$, Bayes' formula after the first success gives
-\[
-\mathbb{P}(R_1\mid \text{success})=\frac{\tfrac12\cdot\tfrac34}{\tfrac12\cdot\tfrac34+\tfrac12\cdot\tfrac12}=\frac{3}{5},\qquad
-\mathbb{P}(R_2\mid \text{success})=\frac{2}{5}.
-\]
+\begin{align*}
+\mathbb{P}(R_1\mid \text{success})&=\frac{\tfrac12\cdot\tfrac34}{\tfrac12\cdot\tfrac34+\tfrac12\cdot\tfrac12}=\frac{3}{5}, \\
+\mathbb{P}(R_2\mid \text{success})&=\frac{2}{5}.
+\end{align*}
 For the second purchase in the same region without replacement, the success probabilities are $\tfrac{2}{3}$ in $R_1$ and $\tfrac{1}{3}$ in $R_2$. Therefore,
-\[
-\mathbb{P}(\text{second success}\mid \text{first success})=\frac{3}{5}\cdot\frac{2}{3}+\frac{2}{5}\cdot\frac{1}{3}=\frac{8}{15}.
-\]
-Hence, the required probability is $8/15$.
+\begin{align*}
+\mathbb{P}(\text{second success}\mid \text{first success})
+&=\frac{3}{5}\cdot\frac{2}{3}+\frac{2}{5}\cdot\frac{1}{3}=\frac{8}{15}.
+\end{align*}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.10.5)  6 OCT 2025 23:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.10.5)  7 OCT 2025 00:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -153,25 +153,25 @@ L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1330 strings out of 475171
- 20117 string characters out of 5767095
- 416325 words of memory out of 5000000
- 24358 multiletter control sequences out of 15000+600000
- 567074 words of font info for 68 fonts, out of 8000000 for 9000
+ 1328 strings out of 475171
+ 20096 string characters out of 5767095
+ 418325 words of memory out of 5000000
+ 24357 multiletter control sequences out of 15000+600000
+ 566728 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 56i,10n,65p,449b,218s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 56i,13n,65p,709b,218s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/gregory1m/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600
 pk></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb>
-Output written on homework.pdf (4 pages, 124161 bytes).
+/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb>
+Output written on homework.pdf (4 pages, 122285 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  47 compressed objects within 1 object stream
