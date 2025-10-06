@@ -37,13 +37,13 @@ Hence, the required probability is 8/15.
 Hence, the required probability is $98/285$.
 \section{Problem 3}
 
-\textbf{Problem.} There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it does not matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
+\textbf{Problem.} There are 20 people at a chess club on a certain day. They each find opponents and start playing. How many possibilities are there for how they are matched up, assuming that in each game it \emph{does} matter who has the white pieces (in a chess game, one player has the white pieces and the other player has the black pieces)?
 
-\textbf{Solution.} We are counting the number of ways to partition 20 labeled people into 10 unordered pairs (perfect matchings). Arrange the 20 people in order (20! ways) and group them into consecutive pairs; this overcounts by a factor of 2 for swapping the two players within each pair and by 10! for permuting the pairs. Therefore,
+\textbf{Solution.} We are counting the number of ways to partition 20 labeled people into 10 \emph{ordered} pairs (assigning white/black in each game). Arrange the 20 people in order ($20!$ ways) and group them into consecutive pairs; take the first in each pair to be White and the second to be Black. This only overcounts by a factor of $10!$ for permuting the pairs (the order of the games). Therefore,
 \[
-\frac{20!}{2^{10}\,10!}
+\frac{20!}{10!}.
 \]
-Hence, the number of possible matchings is $20!/(2^{10}10!)$.
+Hence, the number of possible matchings is $\displaystyle \frac{20!}{10!}=670{,}442{,}572{,}800$.
 \section{Problem 4}
 
 \textbf{Problem.} What is the probability that a point thrown at random into a circle will land inside the square inscribed in it?
