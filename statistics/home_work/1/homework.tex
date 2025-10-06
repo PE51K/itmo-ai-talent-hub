@@ -26,14 +26,14 @@ Hence, the required probability is 8/15.
 \textbf{Problem.} Of the 20 clocks received for repair, 8 require a general cleaning of the mechanism. What is the probability that among 3 clocks taken at random simultaneously, at least two require a general cleaning of the mechanism?
 
 \textbf{Solution.} Let $X$ be the number of clocks among the three that require cleaning. Then $X$ has a hypergeometric distribution with population size $20$, number of ``successes'' $8$, and draws $3$. We need
-\[
-\mathbb{P}(X \ge 2) \;=\; \mathbb{P}(X=2) + \mathbb{P}(X=3)
-= \frac{\binom{8}{2}\binom{12}{1} + \binom{8}{3}\binom{12}{0}}{\binom{20}{3}}
-= \frac{28\cdot 12 + 56\cdot 1}{1140}
-= \frac{392}{1140}
-= \frac{98}{285}
-\approx 0.344.
-\]
+\begin{align*}
+\mathbb{P}(X \ge 2) &= \mathbb{P}(X=2) + \mathbb{P}(X=3) \\
+&= \frac{\binom{8}{2}\binom{12}{1} + \binom{8}{3}\binom{12}{0}}{\binom{20}{3}} \\
+&= \frac{28\cdot 12 + 56\cdot 1}{1140} \\
+&= \frac{392}{1140} \\
+&= \frac{98}{285} \\
+&\approx 0.344.
+\end{align*}
 Hence, the required probability is $98/285$.
 \section{Problem 3}
 
@@ -65,30 +65,39 @@ Hence, the required probability is $2/\pi$.
 \textbf{Solution.} Treat a ticket as specifying a particular seat. Equivalently, we choose uniformly at random a 7-seat subset from the 36 seats in the carriage. The sample space size is \(\binom{36}{7}\).
 
 a) Two compartments. To place 7 seats across two compartments with at most 4 per compartment, the occupancies must be \(3\) and \(4\). Choose the two compartments \(\binom{9}{2}\), choose which one has 4 seats (2 ways), and then choose the seats inside: \(\binom{4}{4}\) and \(\binom{4}{3}\). Therefore,
-\[
+\begin{align*}
 \mathbb{P}(\text{two compartments})
-= \frac{\binom{9}{2}\cdot 2 \cdot \binom{4}{4}\binom{4}{3}}{\binom{36}{7}}
-= \frac{\binom{9}{2}\cdot 8}{\binom{36}{7}}.
-\]
+&= \frac{\binom{9}{2}\cdot 2 \cdot \binom{4}{4}\binom{4}{3}}{\binom{36}{7}} \\
+&= \frac{\binom{9}{2}\cdot 8}{\binom{36}{7}} \\
+&= \frac{36 \cdot 8}{8{,}347{,}680} \\
+&= \frac{288}{8{,}347{,}680} \\
+&\approx 0.0000345.
+\end{align*}
 
 b) Seven compartments. Then every chosen compartment contains exactly 1 seat; choose the compartments \(\binom{9}{7}\) and the seats \(\binom{4}{1}^7=4^7\):
-\[
+\begin{align*}
 \mathbb{P}(\text{seven compartments})
-= \frac{\binom{9}{7}\cdot 4^7}{\binom{36}{7}}.
-\]
+&= \frac{\binom{9}{7}\cdot 4^7}{\binom{36}{7}} \\
+&= \frac{36 \cdot 16{,}384}{8{,}347{,}680} \\
+&= \frac{589{,}824}{8{,}347{,}680} \\
+&\approx 0.0707.
+\end{align*}
 
 c) Three compartments. The feasible seat-count patterns are \(4\!-\!2\!-\!1\), \(3\!-\!3\!-\!1\), and \(3\!-\!2\!-\!2\). Accounting for permutations of compartments and seat choices within compartments yields
 \[
 6\cdot\binom{4}{4}\binom{4}{2}\binom{4}{1}
 + 3\cdot\binom{4}{3}\binom{4}{3}\binom{4}{1}
 + 3\cdot\binom{4}{3}\binom{4}{2}\binom{4}{2}
-= 768.
+= 144 + 192 + 432 = 768.
 \]
 Hence,
-\[
+\begin{align*}
 \mathbb{P}(\text{three compartments})
-= \frac{\binom{9}{3}\cdot 768}{\binom{36}{7}}.
-\]
+&= \frac{\binom{9}{3}\cdot 768}{\binom{36}{7}} \\
+&= \frac{84 \cdot 768}{8{,}347{,}680} \\
+&= \frac{64{,}512}{8{,}347{,}680} \\
+&\approx 0.0077.
+\end{align*}
 
 \section{Problem 6}
 
