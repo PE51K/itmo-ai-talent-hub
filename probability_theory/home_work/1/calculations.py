@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Calculate all formulas for statistics homework 1."""
 
 import math

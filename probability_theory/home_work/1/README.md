@@ -1,4 +1,4 @@
-# Statistics Homework 1 LaTeX Setup
+# Statistics Homework 1
 
 ## Prerequisites
 
