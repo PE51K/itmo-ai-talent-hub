@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Probability Theory Homework 2}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+
+\textbf{Problem.} Two shooters take turns until someone hits the target. Shooter 1 hits with probability $0.2$, shooter 2 with probability $0.3$. Find the probability that shooter 1 fires more shots than shooter 2.
+
+\textbf{Solution.} Shooter~1 fires first, so the desired event is that the first hit occurs on one of shooter~1's turns. Let $A$ denote this event. Conditioning on the first round,
+\[
+\mathbb{P}(A) = 0.2 + (1-0.2)(1-0.3)\,\mathbb{P}(A).
+\]
+Solving gives
+\[
+\mathbb{P}(A) = \frac{0.2}{1-0.8\cdot 0.7} = \frac{5}{11} \approx 0.455.
+\]
+
+\section{Problem 2}
+
+\textbf{Problem.} The first urn contains five white and six black balls; the second contains four white and eight black balls. Three balls are drawn from the first urn and transferred to the second, after which four balls are drawn from the second urn. Find the probability that all four drawn balls are white.
+
+\textbf{Solution.} Let $K$ be the number of white balls moved. Then
+\[
+\mathbb{P}(K=k) = \frac{\binom{5}{k}\binom{6}{3-k}}{\binom{11}{3}},\qquad k=0,1,2,3.
+\]
+After moving $k$ white balls the second urn holds $4+k$ white and $11-k$ black balls, so
+\[
+\mathbb{P}(\text{four white}\mid K=k)=\frac{\binom{4+k}{4}}{\binom{15}{4}}.
+\]
+By the law of total probability,
+\[
+\mathbb{P}(\text{four white}) = \sum_{k=0}^{3} \frac{\binom{5}{k}\binom{6}{3-k}}{\binom{11}{3}} \cdot \frac{\binom{4+k}{4}}{\binom{15}{4}} = \frac{47}{6435} \approx 7.30\times 10^{-3}.
+\]
+
+\section{Problem 3}
+
+\textbf{Problem.} An insurer classifies policyholders as low, medium, or high risk with prior probabilities $0.5$, $0.3$, and $0.2$. Claim probabilities are $0.01$, $0.03$, and $0.08$ respectively. Given that a payout was made, find the probability the policyholder was low risk.
+
+\textbf{Solution.} Bayes' theorem gives
+\[
+\mathbb{P}(\text{low}\mid \text{payout}) = \frac{0.01\cdot 0.5}{0.01\cdot 0.5 + 0.03\cdot 0.3 + 0.08\cdot 0.2} = \frac{1}{6} \approx 0.167.
+\]
+
+\section{Problem 4}
+
+\textbf{Problem.} $n$ visitors check their hats. The cloakroom randomly permutes the hats. Find the probability that at least one visitor retrieves the correct hat. Provide the general formula and the value for $n=4$.
+
+\textbf{Solution.} Let $A_i$ be the event visitor $i$ gets the correct hat. By inclusion--exclusion, the probability that nobody gets the correct hat is
+\[
+\mathbb{P}(A_1^c\cap \cdots \cap A_n^c) = \sum_{k=0}^{n} \frac{(-1)^k}{k!}.
+\]
+Hence
+\[
+\mathbb{P}(\text{at least one match}) = 1 - \sum_{k=0}^{n} \frac{(-1)^k}{k!} = 1 - \frac{D_n}{n!},
+\]
+where $D_n$ counts derangements. For $n=4$ we have $D_4=9$, so
+\[
+\mathbb{P}(\text{at least one match}) = 1 - \frac{9}{4!} = \frac{5}{8} = 0.625.
+\]
+
+\section{Problem 5}
+
+\textbf{Problem.} A COVID test has $\mathbb{P}(+\mid D)=0.999$ and $\mathbb{P}(+\mid D^c)=0.001$, where $D$ denotes ``has COVID''. Compute $\mathbb{P}(D\mid +)$ when (a) $\mathbb{P}(D)=0.01$ and (b) $\mathbb{P}(D)=0.0001$.
+
+\textbf{Solution.} Applying Bayes' theorem,
+\begin{align*}
+\mathbb{P}(D\mid +) &= \frac{0.999\,\mathbb{P}(D)}{0.999\,\mathbb{P}(D) + 0.001\,(1-\mathbb{P}(D))}.
+\end{align*}
+For $\mathbb{P}(D)=0.01$ this yields $\frac{999}{1098}\approx 0.910$, while for $\mathbb{P}(D)=0.0001$ it gives $\frac{999}{10998}\approx 0.0909$.
+
+\section{Problem 6}
+
+\textbf{Problem.} Basket~1 initially holds one white ball; basket~2 holds one black ball. A basket is chosen uniformly at random, a white ball is added to it, the contents are shuffled, and one ball is drawn. The drawn ball is white. Find the probability that a second draw from the same basket (without replacement) is also white.
+
+\textbf{Solution.} Let $B_1$ (resp.\ $B_2$) be the event that basket~1 (resp.\ basket~2) was chosen. Bayes' theorem gives
+\[
+\mathbb{P}(B_1\mid \text{white}) = \frac{\mathbb{P}(\text{white}\mid B_1)\mathbb{P}(B_1)}{\mathbb{P}(\text{white}\mid B_1)\mathbb{P}(B_1) + \mathbb{P}(\text{white}\mid B_2)\mathbb{P}(B_2)} = \frac{2}{3}.
+\]
+If $B_1$ occurs, both remaining balls are white; if $B_2$ occurs, the remaining ball is black. Therefore,
+\[
+\mathbb{P}(\text{second white}\mid \text{first white}) = \frac{2}{3}\cdot 1 + \frac{1}{3}\cdot 0 = \frac{2}{3}.
+\]
+
+\end{document}
