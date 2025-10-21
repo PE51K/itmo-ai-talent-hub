@@ -29,18 +29,14 @@ p \;=\; \frac{p_1}{1-(1-p_1)(1-p_2)}
 = \frac{0.2}{0.44}
 = \frac{5}{11}.
 \]
-(Equivalently, \(p=\sum_{k\ge0}\bigl((1-p_1)(1-p_2)\bigr)^k p_1\) is a geometric series.)
 
-Therefore, the probability that the first shooter makes more shots than the second is
-\[
-\boxed{\dfrac{5}{11}}.
-\]
+(Alternatively, \(p=\sum_{k\ge0}\bigl((1-p_1)(1-p_2)\bigr)^k p_1\) is a geometric series.)
 
 \section{Problem 2}
 
 \textbf{Problem.} There are 5 white and 6 black balls in the first urn, and 4 white and 8 black balls in the second urn. Three balls are drawn at random from the first urn and placed into the second urn. After this, four balls are drawn at random from the second urn. Find the probability that all four balls drawn from the second urn are white. Hint: remember about conditional probability!
 
-\textbf{Using your notation.}
+\textbf{Solution.}
 Let $F_k=\{f=k\}$ be the event that $k$ white balls are transferred ($k=0,1,2,3$),
 and let $G=\{g(4)\}$ be the event that all four drawn from urn 2 are white.
 By the law of total probability,
@@ -48,13 +44,13 @@ By the law of total probability,
 \Pr(G)=\sum_{k=0}^3 \Pr(G\mid F_k)\Pr(F_k).
 \]
 
-\textit{Transfer step.} From urn 1 (5W,6B) to urn 2, the number $f$ of whites moved is
+From urn 1 (5W,6B) to urn 2, the number $f$ of whites moved is
 hypergeometric:
 \[
 \Pr(F_k)=\frac{\binom{5}{k}\binom{6}{3-k}}{\binom{11}{3}},\qquad k=0,1,2,3.
 \]
 
-\textit{Draw from urn 2.} After moving $k$ whites, urn 2 has $4+k$ whites and $11-k$ blacks
+After moving $k$ whites, urn 2 has $4+k$ whites and $11-k$ blacks
 (total $15$). Thus
 \[
 \Pr(G\mid F_k)=\frac{\binom{4+k}{4}}{\binom{15}{4}}.
@@ -64,65 +60,44 @@ Therefore
 \[
 \Pr(G)=\sum_{k=0}^{3}\frac{\binom{5}{k}\binom{6}{3-k}}{\binom{11}{3}}
 \cdot \frac{\binom{4+k}{4}}{\binom{15}{4}}
-= \frac{47}{6435}\approx 0.00730.
-\]
-
-\[
-\boxed{\Pr(\text{4 whites from urn 2})=\dfrac{47}{6435}}
+= \frac{47}{6435}
 \]
 
 \section{Problem 3}
 
 \textbf{Problem.} An insurance company categorizes its policyholders into risk classes: Class I (low risk), Class II (medium risk), and Class III (high risk). Among these clients, 50\% are in the first class, 30\% in the second, and 20\% in the third. The probability of an insurance payout being necessary for the first risk class is 0.01, 0.03 for the second, and 0.08 for the third. What is the probability that a policyholder who received a monetary payout belongs to the low-risk group?
 
-\textbf{Solution (matching your notation and steps).}
-
-\textit{Set-up.} 
+\textbf{Solution.}
 Let the random variable $k\in\{1,2,3\}$ indicate the risk class (1 = low, 2 = medium, 3 = high).
 Let $t\in\{0,1\}$ indicate whether a payout occurs ($t=1$) or not ($t=0$).
 
-Given:
 \[
 P(k=1)=0.5,\qquad P(k=2)=0.3,\qquad P(k=3)=0.2,
 \]
 \[
 P(t=1\mid k=1)=0.01,\qquad P(t=1\mid k=2)=0.03,\qquad P(t=1\mid k=3)=0.08.
 \]
-
-\textit{Goal.} Compute $P(k=1\mid t=1)$.
-
-\medskip
-\textit{Your chain (Bayes).}
-Start from
 \[
 P(k=1\mid t=1)=\frac{P(k=1\wedge t=1)}{P(t=1)}
 =\frac{P(t=1\mid k=1)\,P(k=1)}{P(t=1)}.
 \]
-
-\textit{Total probability for the denominator.}
 \[
 P(t=1)=\sum_{r=1}^{3} P(t=1\mid k=r)\,P(k=r)
 =0.01\cdot0.5+0.03\cdot0.3+0.08\cdot0.2
-=0.005+0.009+0.016=0.03.
+=0.03.
 \]
-
-\textit{Plug in.}
 \[
 P(k=1\mid t=1)
 =\frac{0.01\cdot 0.5}{0.03}
 =\frac{0.005}{0.03}
-=\frac{1}{6}\approx 0.1667.
-\]
-
-\[
-\boxed{P(\text{low risk}\mid \text{payout})=\dfrac{1}{6}\ (\approx 16.7\%).}
+=\frac{1}{6}.
 \]
 
 \section{Problem 4}
 
 \textbf{Problem.} The cloakroom of a theater has randomly permuted all \( n \) visitors’ hats. Find the probability that at least one visitor gets his hat. Give a formula answer with derivation. Given \( n = 4 \), give a numerical answer. (Hint: use the inclusion–exclusion formula.)
 
-\textbf{Solution (following your outline).}
+\textbf{Solution.}
 Let $t$ be the number of visitors who receive their own hat. Then
 \[
 \mathbb{P}(t\ge 1)=1-\mathbb{P}(t=0).
@@ -155,13 +130,8 @@ Therefore
 \mathbb{P}(t\ge 1)=\sum_{r=1}^4 \frac{(-1)^{r+1}}{r!}
 =1-\frac{1}{2!}+\frac{1}{3!}-\frac{1}{4!}
 =1-\frac12+\frac16-\frac{1}{24}
-=\frac{5}{8}=0.625.
+=\frac{5}{8}.
 \]
-
-\textit{Remark.} The naive product
-$\frac{(n-1)(n-2)\cdots 1}{n!}=\frac{1}{n}$ counts the event
-“person 1 is not fixed,” not “no one is fixed.” These events are dependent;
-inclusion–exclusion corrects for this dependence.
 
 \section{Problem 5}
 
@@ -189,10 +159,8 @@ P(T^+|\neg C) = \text{probability of a positive test if not infected (false posi
 
 We want:
 \[
-P(C|T^+) = \frac{P(T^+|C)P(C)}{P(T^+|C)P(C) + P(T^+|\neg C)P(\neg C)}.
+P(C|T^+) = \frac{P(T^+|C)P(C)}{P(T^+)} = \frac{P(T^+|C)P(C)}{P(T^+|C)P(C) + P(T^+|\neg C)P(\neg C)}.
 \]
-
----
 
 \textbf{(a) Prior probability \( P(C) = 0.01 \).}
 
@@ -212,12 +180,6 @@ P(T^+) = 0.00999 + 0.00099 = 0.01098.
 P(C|T^+) = \frac{0.00999}{0.01098} \approx 0.9098.
 \]
 
-\[
-\boxed{P(C|T^+) \approx 90.98\%}.
-\]
-
----
-
 \textbf{(b) Prior probability \( P(C) = 0.0001 \).}
 
 \[
@@ -235,24 +197,6 @@ P(T^+) = 0.0000999 + 0.0009999 = 0.0010998.
 \[
 P(C|T^+) = \frac{0.0000999}{0.0010998} \approx 0.0908.
 \]
-
-\[
-\boxed{P(C|T^+) \approx 9.08\%}.
-\]
-
----
-
-\textbf{Summary Table.}
-
-\[
-\begin{array}{c|c|c}
-\text{Prior } P(C) & P(C|T^+) & \text{Interpretation} \\ \hline
-0.01 & 0.9098 & \text{High posterior probability (90.98\%)} \\
-0.0001 & 0.0908 & \text{Much lower posterior probability (9.08\%)} 
-\end{array}
-\]
-
-Even with a highly accurate test, a very low prior (prevalence) greatly reduces the probability of truly being infected after a positive test.
 
 \section{Problem 6}
 
