@@ -1,4 +1,4 @@
-# Statistics Homework 1
+# Statistics Homework 2
 
 ## Prerequisites
 
