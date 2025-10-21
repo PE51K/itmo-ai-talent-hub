@@ -203,7 +203,7 @@ P(C|T^+) = \frac{0.0000999}{0.0010998} \approx 0.0908.
 \textbf{Problem.} There are two baskets. The first basket contains one white ball, and the second basket contains one black ball. One basket is chosen randomly and a white ball is put into the chosen basket. The balls in this basket are shuffled. Then one ball is extracted from this basket, and it turns out to be white. What is the posterior probability that the second ball drawn from this basket is also white?
 
 \textbf{Solution.}
-Let $A$ be the event that the basket chosen to receive the extra white ball is the basket that originally had a white ball (call it Basket 1). Then
+Let $A$ be the event that the basket chosen to receive the extra white ball is the basket that originally had a white ball (Basket 1). $A^c$ is the event that the other basket (Basket 2) received the extra white ball. Then
 \[
 \Pr(A)=\Pr(A^c)=\tfrac12.
 \]
@@ -228,7 +228,7 @@ By Bayes' rule, conditioning on the observed first draw being white,
 \]
 Therefore, the posterior probability that the second ball from this basket is also white is
 \[
-\Pr(\text{second is } W \mid W)=\Pr(A\mid W)\cdot 1+\Pr(A^c\mid W)\cdot 0=\boxed{\tfrac{2}{3}}.
+\Pr(\text{second is } W \mid W)=\Pr(A\mid W)\cdot 1+\Pr(A^c\mid W)\cdot 0=\tfrac{2}{3}.
 \]
 
 \end{document}
