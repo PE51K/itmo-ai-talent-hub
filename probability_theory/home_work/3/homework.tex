@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Probability Theory Homework 3}
+\author{Gregory Matsnev}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+
+\textbf{Problem.} Let \(X \sim \mathrm{Unif}(-1,3)\). Find the probability density function (PDF) of \(Y = X^2\).
+
+\textbf{Solution.}
+The density of \(X\) is \(f_X(x)=\tfrac14\) on \([-1,3]\). For \(y>0\), the equation \(x^2=y\) has roots \(x=\pm\sqrt{y}\).
+Both lie in \([-1,3]\) when \(0<y\le1\); only \(+\sqrt{y}\) lies in the support when \(1<y\le9\).
+By the change-of-variable formula,
+\[
+f_Y(y)=
+\sum_{x:\,x^2=y}\frac{f_X(x)}{|2x|}
+=
+\begin{cases}
+\dfrac{1}{4\sqrt{y}}, & 0<y<1,\\[6pt]
+\dfrac{1}{8\sqrt{y}}, & 1<y<9,\\[6pt]
+0, & \text{otherwise}.
+\end{cases}
+\]
+(The value at the single point \(y=1\) is immaterial for a density; setting \(f_Y(1)=\tfrac14\) keeps the first branch continuous.)
+
+\section{Problem 2}
+
+\textbf{Problem.} Let \(X \sim \mathrm{Bin}(n,p)\). Find the probability mass function (PMF) of \(Y = e^{X}\).
+
+\textbf{Solution.}
+The random variable \(Y\) takes the discrete values \(e^{k}\) for \(k=0,1,\dots,n\).
+Since \(Y=e^{X}\) is a bijection on the support of \(X\),
+\[
+\Pr(Y=e^{k})=\Pr(X=k)=\binom{n}{k}p^{k}(1-p)^{n-k},\qquad k=0,1,\dots,n.
+\]
+
+\section{Problem 3}
+
+\textbf{Problem.} Let \(X\) be the number of failures in i.i.d.\ Bernoulli trials with success probability \(p\), when sampling continues until \(r\) successes have been observed. Find the PMF of \(X\), and recall the name of this distribution.
+
+\textbf{Solution.}
+To stop with exactly \(x\) failures, the sample must consist of \(x+r-1\) trials containing \(r-1\) successes and \(x\) failures, followed by a final success.
+The number of ways to position the first \(r-1\) successes is \(\binom{x+r-1}{r-1}\).
+Therefore
+\[
+\Pr(X=x)=\binom{x+r-1}{r-1}(1-p)^{x}p^{r},\qquad x=0,1,2,\dots
+\]
+This is the (Pascal) negative binomial distribution with parameters \(r\) and \(p\).
+
+\section{Problem 4}
+
+\textbf{Problem.} An airline sells 110 tickets for a flight that has 100 seats. Each ticketed passenger shows up independently with probability \(0.9\). Find the probability that everyone who shows up can be seated.
+
+\textbf{Solution.}
+Let \(S\) be the number of passengers who show up. Then \(S\sim\mathrm{Bin}(110,0.9)\), and seats suffice precisely when \(S\le100\).
+Hence
+\[
+\Pr(S\le100)=\sum_{k=0}^{100}\binom{110}{k} (0.9)^{k}(0.1)^{110-k}\approx 0.6710.
+\]
+(Equivalently, one may compute \(1-\sum_{k=101}^{110}\binom{110}{k}(0.9)^{k}(0.1)^{110-k}\).)
+
+\section{Problem 5}
+
+\textbf{Problem.} Assume \(X\sim\mathrm{HGeom}(w,b,n)\), with total population \(N=w+b\).
+If \(N\to\infty\) while the success proportion \(p=\tfrac{w}{N}\) stays fixed, prove that the PMF of \(X\) converges to that of \(\mathrm{Bin}(n,p)\).
+
+\textbf{Solution.}
+For \(k=0,1,\dots,n\),
+\[
+\Pr(X=k)=\frac{\binom{w}{k}\binom{b}{n-k}}{\binom{N}{n}}.
+\]
+Writing the binomial coefficients with falling factorials \((a)_m=a(a-1)\cdots(a-m+1)\) yields
+\[
+\Pr(X=k)=\binom{n}{k}
+\left[\prod_{i=0}^{k-1}\frac{w-i}{N-i}\right]
+\left[\prod_{j=0}^{n-k-1}\frac{b-j}{N-k-j}\right].
+\]
+As \(N\to\infty\) with \(w/N\to p\) (hence \(b/N\to1-p\)), every factor satisfies
+\(\frac{w-i}{N-i}\to p\) and \(\frac{b-j}{N-k-j}\to 1-p\).
+Taking the product yields
+\[
+\Pr(X=k)\longrightarrow \binom{n}{k} p^{k}(1-p)^{n-k},
+\]
+which is exactly the PMF of \(\mathrm{Bin}(n,p)\).
+
+\section{Problem 6}
+
+\textbf{Problem.} Let \(X\) and \(Y\) be independent random variables with distribution functions \(F_X\) and \(F_Y\), respectively.
+Find the cumulative distribution functions (CDFs) of \(Z_1=\max(X,Y)\) and \(Z_2=\min(X,Y)\).
+
+\textbf{Solution.}
+For any real \(z\),
+\begin{align*}
+F_{Z_1}(z)
+  &= \Pr(\max(X,Y)\le z) \\
+  &= \Pr(X\le z,\,Y\le z) \\
+  &= F_X(z)F_Y(z),
+\end{align*}
+because the events are independent.
+Similarly,
+\begin{align*}
+F_{Z_2}(z)
+  &= \Pr(\min(X,Y)\le z) \\
+  &= 1-\Pr(X>z,\,Y>z) \\
+  &= 1-(1-F_X(z))(1-F_Y(z)).
+\end{align*}
+
+\end{document}
