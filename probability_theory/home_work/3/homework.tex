@@ -15,7 +15,7 @@
 
 \section{Problem 1}
 
-\textbf{Problem.} Let \(X \sim \mathrm{Unif}(-1,3)\). Find the probability density function (PDF) of \(Y = X^2\).
+\textbf{Problem.} Let $X \sim \mathrm{Unif}(-1,3)$. Find the PDF of $Y = X^{2}$.
 
 \textbf{Solution.}
 The density of \(X\) is \(f_X(x)=\tfrac14\) on \([-1,3]\). For \(y>0\), the equation \(x^2=y\) has roots \(x=\pm\sqrt{y}\).
@@ -35,7 +35,7 @@ f_Y(y)=
 
 \section{Problem 2}
 
-\textbf{Problem.} Let \(X \sim \mathrm{Bin}(n,p)\). Find the probability mass function (PMF) of \(Y = e^{X}\).
+\textbf{Problem.} Let $X \sim \mathrm{Bin}(n, p)$. Find the PMF of $Y = e^{X}$.
 
 \textbf{Solution.}
 The random variable \(Y\) takes the discrete values \(e^{k}\) for \(k=0,1,\dots,n\).
@@ -46,7 +46,7 @@ Since \(Y=e^{X}\) is a bijection on the support of \(X\),
 
 \section{Problem 3}
 
-\textbf{Problem.} Let \(X\) be the number of failures in i.i.d.\ Bernoulli trials with success probability \(p\), when sampling continues until \(r\) successes have been observed. Find the PMF of \(X\), and recall the name of this distribution.
+\textbf{Problem.} Find the PMF of the distribution of a random variable $X$, which is equal to the number of failures in a series of Bernoulli trials with success probability $p$. Trials are carried out not a fixed number of times, but instead until there are $r$ successes. Do you remember what this distribution of a random variable is called? \textit{Note: be careful with the binomial coefficient.}
 
 \textbf{Solution.}
 To stop with exactly \(x\) failures, the sample must consist of \(x+r-1\) trials containing \(r-1\) successes and \(x\) failures, followed by a final success.
@@ -59,7 +59,7 @@ This is the (Pascal) negative binomial distribution with parameters \(r\) and \(
 
 \section{Problem 4}
 
-\textbf{Problem.} An airline sells 110 tickets for a flight that has 100 seats. Each ticketed passenger shows up independently with probability \(0.9\). Find the probability that everyone who shows up can be seated.
+\textbf{Problem.} An airline overbooks a flight, selling more tickets for the flight than there are seats on the plane (figuring that it's likely that some people won't show up). The plane has 100 seats, and 110 people have booked the flight. Each person will show up for the flight with probability $0.9$, independently. Find the probability that there will be enough seats for everyone who shows up for the flight.
 
 \textbf{Solution.}
 Let \(S\) be the number of passengers who show up. Then \(S\sim\mathrm{Bin}(110,0.9)\), and seats suffice precisely when \(S\le100\).
@@ -71,8 +71,8 @@ Hence
 
 \section{Problem 5}
 
-\textbf{Problem.} Assume \(X\sim\mathrm{HGeom}(w,b,n)\), with total population \(N=w+b\).
-If \(N\to\infty\) while the success proportion \(p=\tfrac{w}{N}\) stays fixed, prove that the PMF of \(X\) converges to that of \(\mathrm{Bin}(n,p)\).
+\textbf{Problem.} Prove that if $X \sim \mathrm{HGeom}(w,b,n)$ and $N=w+b \to \infty$ such that 
+$p=\dfrac{w}{w+b}$ remains fixed, then the PMF of $X$ converges to the $\mathrm{Bin}(n,p)$ PMF.
 
 \textbf{Solution.}
 For \(k=0,1,\dots,n\),
@@ -95,8 +95,7 @@ which is exactly the PMF of \(\mathrm{Bin}(n,p)\).
 
 \section{Problem 6}
 
-\textbf{Problem.} Let \(X\) and \(Y\) be independent random variables with distribution functions \(F_X\) and \(F_Y\), respectively.
-Find the cumulative distribution functions (CDFs) of \(Z_1=\max(X,Y)\) and \(Z_2=\min(X,Y)\).
+\textbf{Problem.} Consider two independent random variables $X$ with CDF $F_X$ and $Y$ with CDF $F_Y$. Find the CDFs of the random variables $Z_1=\max(X,Y)$—meaning that for every outcome $\omega$ we have $Z_1(\omega)=\max\{X(\omega),Y(\omega)\}$—and $Z_2=\min(X,Y)$.
 
 \textbf{Solution.}
 For any real \(z\),
