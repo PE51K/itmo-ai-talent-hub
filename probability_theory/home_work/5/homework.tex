@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Probability Theory Homework 5}
+\author{Gregory Matsnev}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+
+\textbf{Problem.} Find all moments of the normal distribution using MGF.
+
+\textbf{Solution.}
+Let $X \sim \mathcal{N}(\mu,\sigma^{2})$. Its MGF is
+\[
+M_X(t) = \exp\!\left(\mu t + \tfrac{1}{2}\sigma^{2} t^{2}\right).
+\]
+The $n$-th raw moment is $m_n = M_X^{(n)}(0)$. Differentiating the exponential gives
+\[
+\mathbb{E}\,X^{n}
+= \sum_{k=0}^{\lfloor n/2 \rfloor}
+ \frac{n!}{(n-2k)! \, k!\, 2^{k}}\, \mu^{\,n-2k} \sigma^{2k},
+\]
+so all odd centered moments vanish and even centered moments are $\mathbb{E}(X-\mu)^{2k} = \dfrac{(2k)!}{2^{k} k!}\sigma^{2k}$.
+
+\section{Problem 2}
+
+\textbf{Problem.} For independent and identically distributed $X, Y \sim \mathcal{N}(0,1)$ find $\mathbb{E}(|X - Y|)$. Use MGF of independent normal distributions.
+
+\textbf{Solution.}
+The difference $Z = X - Y$ is normal with mean $0$ and variance $1+1 = 2$, hence $Z \sim \mathcal{N}(0,2)$ and $M_Z(t) = \exp(t^{2})$. For a centered normal $N(0,\sigma^{2})$, $\mathbb{E}|Z| = \sigma \sqrt{2/\pi}$. Here $\sigma = \sqrt{2}$, so
+\[
+\mathbb{E}|X-Y| = \sqrt{2}\,\sqrt{\tfrac{2}{\pi}} = \frac{2}{\sqrt{\pi}}.
+\]
+
+\section{Problem 3}
+
+\textbf{Problem.} Let $X,Y \sim \mathrm{Expo}(1)$ be independent and identically distributed random variables. Find the correlation between $\max(X,Y)$ and $\min(X,Y)$.
+
+\textbf{Solution.}
+Let $U = \min(X,Y)$ and $D = \max(X,Y)-\min(X,Y)$. For exponentials, $U \sim \mathrm{Expo}(2)$ and $D \sim \mathrm{Expo}(1)$, and $U$ and $D$ are independent by the memoryless property. Then $\max(X,Y) = U + D$.
+
+\[
+\mathbb{E}U = \tfrac{1}{2},\quad \mathrm{Var}(U) = \tfrac{1}{4},\qquad
+\mathbb{E}D = 1,\quad \mathrm{Var}(D) = 1.
+\]
+Thus $\mathbb{E}\max = \tfrac{3}{2}$ and $\mathrm{Var}(\max) = \mathrm{Var}(U)+\mathrm{Var}(D) = \tfrac{5}{4}$. Since $D$ is independent of $U$, $\mathrm{Cov}(\max, \min) = \mathrm{Cov}(U+D, U) = \mathrm{Var}(U) = \tfrac{1}{4}$. Therefore
+\[
+\rho(\max,\min) = \frac{\mathrm{Cov}(\max,\min)}{\sqrt{\mathrm{Var}(\max)\,\mathrm{Var}(\min)}}
+= \frac{\tfrac{1}{4}}{\sqrt{(\tfrac{5}{4})(\tfrac{1}{4})}} = \frac{1}{\sqrt{5}}.
+\]
+
+\section{Problem 4}
+
+\textbf{Problem.} Consider the Log-Normal distribution $Y \sim LN(\mu,\sigma^{2})$, where $Y = e^{X}$ and $X \sim \mathcal{N}(\mu,\sigma^{2})$. Check that the MGF of the Log-Normal distribution doesn't exist. Despite this, obtain all moments of the Log-Normal, using the MGF of the Normal.
+
+\textbf{Solution.}
+The putative MGF of $Y$ is $M_Y(t) = \mathbb{E}(e^{tY}) = \mathbb{E}(e^{t e^{X}})$. For any $t>0$ the integrand grows like $\exp(t e^{x})$ as $x \to \infty$, which dominates the Gaussian decay and makes the integral diverge; no open neighborhood of $0$ yields a finite MGF, so it does not exist.
+
+Nevertheless, all moments of $Y$ exist. For $k>0$,
+\[
+\mathbb{E}Y^{k} = \mathbb{E}e^{kX} = M_X(k) = \exp\!\left(k\mu + \tfrac{1}{2}k^{2}\sigma^{2}\right).
+\]
+Thus every raw moment of the Log-Normal has the above closed form even though its MGF diverges.
+
+\section{Problem 5}
+
+\textbf{Problem.} The distribution function of a continuous random variable $X$, distributed according to the Cauchy law, is $F(x) = A + B \arctan\!\dfrac{x}{a}$ for $a>0$. Find the constants $A$ and $B$, the PDF, the probability $\mathbb{P}(-a \le X \le a)$. What are the mathematical expectation and variance of this random variable?
+
+\textbf{Solution.}
+As $x \to -\infty$, $\arctan(x/a) \to -\tfrac{\pi}{2}$, so $0 = \lim_{x\to -\infty}F(x) = A - \tfrac{\pi}{2}B$. As $x \to \infty$, $1 = \lim_{x\to\infty}F(x) = A + \tfrac{\pi}{2}B$. Solving gives $A = \tfrac{1}{2}$ and $B = \tfrac{1}{\pi}$, yielding
+\[
+F(x) = \tfrac{1}{2} + \frac{1}{\pi}\arctan\!\frac{x}{a}.
+\]
+Differentiation gives the PDF
+\[
+ f(x) = \frac{1}{\pi} \cdot \frac{1/a}{1+(x/a)^{2}} = \frac{a}{\pi(a^{2}+x^{2})}.
+\]
+The probability $\mathbb{P}(-a \le X \le a) = F(a) - F(-a) = \tfrac{1}{\pi}(\arctan 1 - \arctan(-1)) = \tfrac{1}{2}$. The mean and variance of the Cauchy distribution do not exist (they diverge).
+
+\section{Problem 6}
+
+\textbf{Problem.} Find the skewness $A = \mu_{3}/\sigma^{3}$ and kurtosis $E = \mu_{4}/\sigma^{4} - 3$ of a random variable distributed according to the Laplace law with a probability density function $\phi(x) = \tfrac{1}{2}e^{-|x|}$.
+
+\textbf{Solution.}
+This is a Laplace$(0,1)$ density. It is symmetric, so $\mu_{3}=0$ and skewness $A=0$. The MGF is $M(t) = (1 - t^{2})^{-1}$ for $|t|<1$, implying raw (and centered) moments $\mathbb{E}X^{2k} = (2k)!$ and $\mathbb{E}X^{2k+1}=0$. In particular,
+\[
+\mu_{2} = \mathbb{E}X^{2} = 2,\qquad
+\mu_{4} = \mathbb{E}X^{4} = 24.
+\]
+Hence $\sigma^{2} = 2$, so $\sigma^{4} = 4$, and
+\[
+E = \frac{\mu_{4}}{\sigma^{4}} - 3 = \frac{24}{4} - 3 = 3.
+\]
+Thus skewness is $0$ and excess kurtosis is $3$.
+
+\end{document}
