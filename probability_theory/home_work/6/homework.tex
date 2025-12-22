@@ -5,7 +5,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
-\title{Probability Theory Homework 5}
+\title{Probability Theory Homework 6}
 \author{Gregory Matsnev}
 \date{\today}
 
@@ -115,6 +115,26 @@ Computing:
 \textbf{Problem.} The random variable $X$ is defined on the entire real axis with the probability density $\phi(x)=\frac{1}{2}e^{-|x|}$. Find the probability density of the random variable $Y=X^2$ and its mathematical expectation.
 
 \textbf{Solution.}
+Let $Y=X^2$. Then $Y\ge 0$ and for $y>0$ the equation $y=x^2$ has two solutions $x=\sqrt y$ and $x=-\sqrt y$. By the change-of-variables formula,
+\[
+f_Y(y)=\sum_{x:\,x^2=y} f_X(x)\left|\frac{dx}{dy}\right|
+=f_X(\sqrt y)\cdot \frac{1}{2\sqrt y}+f_X(-\sqrt y)\cdot \frac{1}{2\sqrt y},\qquad y>0.
+\]
+Since $f_X(x)=\frac12 e^{-|x|}$, we have $f_X(\sqrt y)=f_X(-\sqrt y)=\frac12 e^{-\sqrt y}$, hence
+\[
+f_Y(y)=\frac{e^{-\sqrt y}}{2\sqrt y},\qquad y>0,
+\qquad\text{and}\qquad
+f_Y(y)=0,\ y<0.
+\]
+(The density has an integrable singularity at $y=0$.)
+
+For the expectation,
+\[
+\mathbb E[Y]=\mathbb E[X^2]
+=\int_{-\infty}^{\infty} x^2 \cdot \frac12 e^{-|x|}\,dx
+=\int_{0}^{\infty} x^2 e^{-x}\,dx
+=2.
+\]
 
 \section{Problem 4}
 
@@ -123,12 +143,116 @@ Computing:
 Remember how to prove that $Cov(X,Y)\leq \sigma_X\sigma_Y$.
 
 \textbf{Solution.}
+Assume $\sigma_X>0$ and $\sigma_Y>0$ (otherwise one of the variables is a.s.\ constant and the claim is trivial).
+Let $\widetilde X=X-\mathbb E[X]$ and $\widetilde Y=Y-\mathbb E[Y]$. Then
+\[
+\rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}
+\;=\;\frac{\mathbb E[\widetilde X\widetilde Y]}{\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}}.
+\]
+By the Cauchy--Schwarz inequality,
+\[
+\bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
+\le \sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]},
+\]
+and equality holds if and only if $\widetilde Y=c\,\widetilde X$ a.s.\ for some constant $c$.
+
+If $|\rho_{XY}|=1$, then the Cauchy--Schwarz inequality is an equality, hence there exists a constant $c$ such that
+\[
+Y-\mathbb E[Y]=c\,(X-\mathbb E[X]) \quad \text{a.s.}
+\]
+Equivalently,
+\[
+Y=cX+b \quad \text{a.s.}, \qquad b=\mathbb E[Y]-c\,\mathbb E[X],
+\]
+which is a linear functional relationship between $X$ and $Y$.
 
 \section{Problem 5}
 
 \textbf{Problem.} The distribution surface (joint PDF) of the two-dimensional random variable $(X,Y)$ is a right circular cone, the base of which is a circle centered at the origin with a unit radius. Outside this circle, the joint PDF of this two-dimensional random variable $(X,Y)$ is zero. Find the joint PDF $f(x,y)$, the marginal PDFs and the conditional PDFs $f_x(y)$ and $f_y(x)$. Are the random variables $X$ and $Y$ dependent and/or correlated?
 
 \textbf{Solution.}
+Let $r=\sqrt{x^2+y^2}$. A natural ``cone'' density over the unit disk is linear in $r$ and vanishes at the boundary $r=1$, hence
+\[
+f_{X,Y}(x,y)=
+\begin{cases}
+c(1-r), & r\le 1,\\
+0, & r>1,
+\end{cases}
+\qquad r=\sqrt{x^2+y^2},
+\]
+with a constant $c$ determined by normalization. In polar coordinates $(r,\theta)$, $dx\,dy=r\,dr\,d\theta$, so
+\[
+1=\iint_{\mathbb R^2} f_{X,Y}(x,y)\,dx\,dy
+=\int_0^{2\pi}\int_0^1 c(1-r)\,r\,dr\,d\theta
+=2\pi c\int_0^1 (r-r^2)\,dr
+=2\pi c\left(\frac12-\frac13\right)
+=\frac{\pi c}{3},
+\]
+thus $c=\frac{3}{\pi}$. Therefore
+\[
+f_{X,Y}(x,y)=
+\begin{cases}
+\dfrac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr), & x^2+y^2\le 1,\\[6pt]
+0, & x^2+y^2>1.
+\end{cases}
+\]
+
+\medskip
+\noindent\textbf{Marginals.}
+By symmetry, $f_X=f_Y$. For $|x|<1$ we integrate over $y\in\bigl[-\sqrt{1-x^2},\sqrt{1-x^2}\bigr]$:
+\[
+f_X(x)=\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} \frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)\,dy.
+\]
+Let $a=\sqrt{1-x^2}$. Using evenness in $y$,
+\[
+f_X(x)=\frac{6}{\pi}\int_{0}^{a}\left(1-\sqrt{x^2+y^2}\right)\,dy
+=\frac{6}{\pi}\left(a-\int_{0}^{a}\sqrt{x^2+y^2}\,dy\right).
+\]
+Recall
+\[
+\int \sqrt{x^2+y^2}\,dy
+=\frac{y}{2}\sqrt{x^2+y^2}+\frac{x^2}{2}\ln\!\left(y+\sqrt{x^2+y^2}\right)+C.
+\]
+Since $\sqrt{x^2+a^2}=1$, we get
+\[
+\int_{0}^{a}\sqrt{x^2+y^2}\,dy
+=\frac{a}{2}\cdot 1+\frac{x^2}{2}\ln(a+1)-\frac{x^2}{2}\ln|x|.
+\]
+Hence for $|x|<1$,
+\[
+f_X(x)=\frac{6}{\pi}\left(a-\frac{a}{2}-\frac{x^2}{2}\ln\!\frac{a+1}{|x|}\right)
+=\frac{3}{\pi}\left(a-x^2\ln\!\frac{1+a}{|x|}\right),
+\qquad a=\sqrt{1-x^2}.
+\]
+And $f_X(x)=0$ for $|x|\ge 1$. (At $x=0$ the formula is understood by continuity and gives $f_X(0)=\frac{3}{\pi}$.)
+By symmetry,
+\[
+f_Y(y)=\frac{3}{\pi}\left(\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}\right)\mathbf 1_{\{|y|<1\}}.
+\]
+
+\medskip
+\noindent\textbf{Conditional densities.}
+For $|x|<1$ and $|y|\le \sqrt{1-x^2}$,
+\[
+f_{Y\mid X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
+=\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)}{f_X(x)},
+\]
+and $f_{Y\mid X=x}(y)=0$ otherwise. Similarly, for $|y|<1$ and $|x|\le \sqrt{1-y^2}$,
+\[
+f_{X\mid Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+=\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)}{f_Y(y)},
+\]
+and $0$ otherwise.
+
+\medskip
+\noindent\textbf{Dependence and correlation.}
+$X$ and $Y$ are \emph{dependent} since the support is not a rectangle: if $|X|$ is close to $1$, then necessarily $|Y|$ must be small (because $X^2+Y^2\le 1$).
+
+They are \emph{uncorrelated}: by symmetry $\mathbb E[X]=\mathbb E[Y]=0$, and
+\[
+\mathbb E[XY]=\iint xy\,f_{X,Y}(x,y)\,dx\,dy=0
+\]
+because the integrand is odd in $x$ (or in $y$) while the domain and $f_{X,Y}$ are even. Hence $\mathrm{Cov}(X,Y)=0$ and the correlation coefficient is $0$.
 
 \section{Problem 6}
 
@@ -139,5 +263,66 @@ a) Prove that $R$ and $\theta$ are independent and explain intuitively why this 
 b) What is the joint PDF of $(R,\theta)$ if $(X,Y)$ is Uniform on the unit disk, i.\ e.\ $x^2+y^2\leq 1$? If $X,Y$ are i.\ i.\ d.\ $N(0,1)$?
 
 \textbf{Solution.}
+\textbf{a) Independence of $R$ and $\theta$.}
+Use the change of variables $(x,y)=(r\cos\theta,r\sin\theta)$ with Jacobian $|J|=r$. Then for $r\ge 0$ and $\theta\in[0,2\pi)$,
+\[
+f_{R,\Theta}(r,\theta)=f_{X,Y}(r\cos\theta,r\sin\theta)\,r
+=g(r^2)\,r.
+\]
+This expression does not depend on $\theta$. The marginal density of $\Theta$ is therefore constant:
+\[
+f_{\Theta}(\theta)=\int_{0}^{\infty} g(r^2)\,r\,dr.
+\]
+Since $f_{R,\Theta}$ must integrate to $1$,
+\[
+1=\int_{0}^{2\pi}\int_{0}^{\infty} g(r^2)\,r\,dr\,d\theta
+=2\pi\int_{0}^{\infty} g(r^2)\,r\,dr,
+\]
+so $\int_{0}^{\infty} g(r^2)\,r\,dr=\frac{1}{2\pi}$ and hence
+\[
+f_{\Theta}(\theta)=\frac{1}{2\pi},\qquad \theta\in[0,2\pi),
+\]
+i.e.\ $\Theta$ is uniform on $[0,2\pi)$. Also
+\[
+f_R(r)=\int_{0}^{2\pi} f_{R,\Theta}(r,\theta)\,d\theta
+=2\pi r g(r^2),\qquad r\ge 0.
+\]
+Thus
+\[
+f_{R,\Theta}(r,\theta)=\underbrace{(2\pi r g(r^2))}_{f_R(r)}\cdot \underbrace{\frac{1}{2\pi}}_{f_\Theta(\theta)},
+\]
+so $R$ and $\Theta$ are independent.
+
+\medskip
+\noindent\textbf{Intuition.}
+Spherical symmetry means the distribution is invariant under rotations, so the angle cannot favor any direction (hence uniform), while the radius controls how far from the origin we are; these two pieces of information do not interact.
+
+\medskip
+\noindent\textbf{b) Two examples.}
+
+\smallskip
+\noindent\emph{Uniform on the unit disk.}
+If $(X,Y)$ is uniform on $\{x^2+y^2\le 1\}$, then
+\[
+f_{X,Y}(x,y)=\frac{1}{\pi}\mathbf 1_{\{x^2+y^2\le 1\}}.
+\]
+Hence for $0\le r\le 1$ and $\theta\in[0,2\pi)$,
+\[
+f_{R,\Theta}(r,\theta)=\frac{1}{\pi}\,r,
+\]
+and $0$ otherwise. In particular $f_\Theta(\theta)=\frac{1}{2\pi}$ and $f_R(r)=2r$ for $0\le r\le 1$.
+
+\smallskip
+\noindent\emph{$X,Y$ i.i.d.\ $N(0,1)$.}
+Then
+\[
+f_{X,Y}(x,y)=\frac{1}{2\pi}\exp\!\left(-\frac{x^2+y^2}{2}\right)
+=g(x^2+y^2),\quad g(u)=\frac{1}{2\pi}e^{-u/2}.
+\]
+So for $r\ge 0$ and $\theta\in[0,2\pi)$,
+\[
+f_{R,\Theta}(r,\theta)=\frac{1}{2\pi}e^{-r^2/2}\,r,
+\]
+and again $\Theta\sim \mathrm{Unif}[0,2\pi)$ while $R$ has the Rayleigh density $f_R(r)=r e^{-r^2/2}$ for $r\ge 0$.
 
 \end{document}
