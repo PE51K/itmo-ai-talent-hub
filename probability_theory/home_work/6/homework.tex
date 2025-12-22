@@ -21,7 +21,7 @@
 \]
 
 \textbf{Solution.}
-We have $Y=1-X^3$, so we need to find the PDF of $Y$ using the transformation method. First, let's express $x$ in terms of $y$:
+Let's express $x$ in terms of $y$:
 \[
 y=1-x^3 \quad \Longleftrightarrow \quad x^3=1-y \quad \Longleftrightarrow \quad x=(1-y)^{1/3}.
 \]
@@ -31,13 +31,11 @@ F_Y(y)=\mathbb P(Y\le y)=\mathbb P(1-X^3\le y)
 =\mathbb P(X^3\ge 1-y)=\mathbb P\!\left(X\ge (1-y)^{1/3}\right)
 =1-F_X\!\left((1-y)^{1/3}\right).
 \]
-To get the PDF, we differentiate with respect to $y$:
 \[
 f_Y(y)=\frac{d}{dy}F_Y(y)
 =-\frac{d}{dy}F_X\!\left((1-y)^{1/3}\right)
 =-f_X\!\left((1-y)^{1/3}\right)\frac{d}{dy}(1-y)^{1/3}.
 \]
-The derivative of $(1-y)^{1/3}$ is
 \[
 \frac{d}{dy}(1-y)^{1/3}=-\frac{1}{3}(1-y)^{-2/3},
 \qquad
@@ -52,7 +50,7 @@ Now let's substitute the given PDF of $X$:
 f_X\!\left((1-y)^{1/3}\right)=\frac{1}{\pi\left(1+\left((1-y)^{1/3}\right)^2\right)}
 =\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}.
 \]
-Finally, putting it all together:
+Finally:
 \[
 f_Y(y)=\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}\cdot \frac{1}{3|1-y|^{2/3}}
 =\boxed{\ \frac{1}{3\pi\,|1-y|^{2/3}\left(1+|1-y|^{2/3}\right)}\ },\qquad y\in\mathbb R.
@@ -67,7 +65,7 @@ f_Y(y)=\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}\cdot \frac{1}{3|1-y|^{2/3}}
 
 \textbf{Solution.}
 
-We're given that $f_X(x)=\frac12\cos x$ for $x\in\left[-\frac\pi2,\frac\pi2\right]$ and $Y = 2 - 3\sin X$. Let's find $\mathbb E[Y]$ first:
+Let's find $\mathbb E[Y]$:
 \[
 \mathbb E[Y]=\mathbb E[2-3\sin X]
 =\int_{-\pi/2}^{\pi/2}(2-3\sin x)f_X(x)\,dx
@@ -88,13 +86,12 @@ To find the variance, we need $\mathbb E[Y^2]$:
 \[
 =2\int_{-\pi/2}^{\pi/2}\cos x\,dx-6\int_{-\pi/2}^{\pi/2}\sin x\cos x\,dx+\frac92\int_{-\pi/2}^{\pi/2}\sin^2 x\cos x\,dx.
 \]
-We compute each integral separately:
 \[
 2\int_{-\pi/2}^{\pi/2}\cos x\,dx=2\Bigl[\sin x\Bigr]_{-\pi/2}^{\pi/2}=4,
 \qquad
 -6\int_{-\pi/2}^{\pi/2}\sin x\cos x\,dx=-6\Bigl[\frac12\sin^2 x\Bigr]_{-\pi/2}^{\pi/2}=0.
 \]
-For the last integral, we use substitution $u=\sin x$, so $du=\cos x\,dx$:
+For the last integral, we will use substitution $u=\sin x$, so $du=\cos x\,dx$:
 \[
 \frac92\int_{-\pi/2}^{\pi/2}\sin^2 x\cos x\,dx
 =\frac92\int_{-1}^{1}u^2\,du
@@ -115,14 +112,13 @@ and therefore
 \textbf{Problem.} The random variable $X$ is defined on the entire real axis with the probability density $\phi(x)=\frac{1}{2}e^{-|x|}$. Find the probability density of the random variable $Y=X^2$ and its mathematical expectation.
 
 \textbf{Solution.}
-We need to find the PDF of $Y=X^2$ where $X$ has PDF $f_X(x)=\frac12 e^{-|x|}$. 
 
 Since $Y\ge 0$ and for any $y>0$ the equation $y=x^2$ has two solutions $x=\pm\sqrt y$, we can use the change-of-variables formula:
 \[
 f_Y(y)=\sum_{x:\,x^2=y} f_X(x)\left|\frac{dx}{dy}\right|
 =f_X(\sqrt y)\cdot \frac{1}{2\sqrt y}+f_X(-\sqrt y)\cdot \frac{1}{2\sqrt y},\qquad y>0.
 \]
-Notice that because of the symmetry of $f_X$ (it only depends on $|x|$), we have $f_X(\sqrt y)=f_X(-\sqrt y)=\frac12 e^{-\sqrt y}$. Therefore:
+Because of the symmetry of $f_X$, we have $f_X(\sqrt y)=f_X(-\sqrt y)=\frac12 e^{-\sqrt y}$. Therefore:
 \[
 \boxed{f_Y(y)=\begin{cases}
 \frac{e^{-\sqrt y}}{2\sqrt y}, & y>0,\\
@@ -147,7 +143,7 @@ Remember how to prove that $Cov(X,Y)\leq \sigma_X\sigma_Y$.
 
 \textbf{Solution.}
 
-Let's assume $\sigma_X>0$ and $\sigma_Y>0$ (otherwise the correlation isn't defined). I'll denote the centered variables as \(\widetilde X=X-\mathbb E[X]\) and \(\widetilde Y=Y-\mathbb E[Y]\).
+Let's assume $\sigma_X>0$ and $\sigma_Y>0$ (otherwise the correlation isn't defined). Lets denote the centered variables as \(\widetilde X=X-\mathbb E[X]\) and \(\widetilde Y=Y-\mathbb E[Y]\).
 
 The correlation coefficient can be written as
 \[
@@ -169,7 +165,7 @@ Now, if $|\rho_{XY}|=1$, this means we have equality in Cauchy--Schwarz:
 =\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}.
 \]
 
-The key insight is to consider the quadratic form for any \(t\in\mathbb R\):
+Lets consider the quadratic form for any \(t\in\mathbb R\):
 \[
 0\le \mathbb E[(\widetilde Y-t\widetilde X)^2]
 =\mathbb E[\widetilde Y^2]-2t\,\mathbb E[\widetilde X\widetilde Y]+t^2\mathbb E[\widetilde X^2].
@@ -225,8 +221,6 @@ Y=cX+b\ \text{a.s.}
 
 \textbf{Solution.}
 
-So we have a cone with base as a unit circle. The PDF must have the form $f_{X,Y}(x,y)=c(1-r)\mathbf 1_{\{r\le 1\}}$, where $r=\sqrt{x^2+y^2}$ and $c$ is some constant. Let's find $c$ from the normalization condition.
-
 Converting to polar coordinates:
 \[
 1=\iint_{\mathbb R^2} f_{X,Y}(x,y)\,dx\,dy
@@ -240,14 +234,14 @@ so we have $c=\frac{3}{\pi}$. Therefore:
 f_{X,Y}(x,y)=\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\mathbf 1_{\{x^2+y^2\le 1\}}.
 \]
 
-Now let's find the marginal PDFs. For $|x|\le 1$, I'll denote $a=\sqrt{1-x^2}$:
+Now let's find the marginal PDFs. For $|x|\le 1$, we will denote $a=\sqrt{1-x^2}$:
 \[
 f_X(x)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy
 =\int_{-a}^{a}\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
 =\frac{6}{\pi}\int_{0}^{a}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
 =\frac{6}{\pi}\left(a-\int_{0}^{a}\sqrt{x^2+y^2}\,dy\right).
 \]
-To evaluate this integral, I'll use the antiderivative formula:
+To evaluate this integral, we will use the antiderivative formula:
 \[
 \int \sqrt{x^2+y^2}\,dy
 =\frac12\Bigl(y\sqrt{x^2+y^2}+x^2\ln\bigl(y+\sqrt{x^2+y^2}\bigr)\Bigr)+C,
@@ -258,7 +252,7 @@ so we get
 =\frac12\Bigl(a\sqrt{x^2+a^2}+x^2\ln(a+\sqrt{x^2+a^2})-x^2\ln|x|\Bigr)
 =\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr),
 \]
-where in the last step I used $\sqrt{x^2+a^2}=\sqrt{x^2+1-x^2}=1$. Therefore, for $|x|\le 1$:
+where $\sqrt{x^2+a^2}=\sqrt{x^2+1-x^2}=1$. Therefore, for $|x|\le 1$:
 \[
 f_X(x)=\frac{6}{\pi}\left(a-\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr)\right)
 =\frac{3}{\pi}\left(a-x^2\ln\!\frac{1+a}{|x|}\right),
