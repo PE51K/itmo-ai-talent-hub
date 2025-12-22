@@ -21,41 +21,38 @@
 \]
 
 \textbf{Solution.}
-Let
-\[
-Y=1-X^3.
-\]
-Then
+We have $Y=1-X^3$, so we need to find the PDF of $Y$ using the transformation method. First, let's express $x$ in terms of $y$:
 \[
 y=1-x^3 \quad \Longleftrightarrow \quad x^3=1-y \quad \Longleftrightarrow \quad x=(1-y)^{1/3}.
 \]
-Computing the CDF:
+Now I'll find the CDF of $Y$ and then differentiate to get the PDF:
 \[
 F_Y(y)=\mathbb P(Y\le y)=\mathbb P(1-X^3\le y)
 =\mathbb P(X^3\ge 1-y)=\mathbb P\!\left(X\ge (1-y)^{1/3}\right)
 =1-F_X\!\left((1-y)^{1/3}\right).
 \]
-Differentiating:
+To get the PDF, we differentiate with respect to $y$:
 \[
 f_Y(y)=\frac{d}{dy}F_Y(y)
 =-\frac{d}{dy}F_X\!\left((1-y)^{1/3}\right)
 =-f_X\!\left((1-y)^{1/3}\right)\frac{d}{dy}(1-y)^{1/3}.
 \]
+The derivative of $(1-y)^{1/3}$ is
 \[
 \frac{d}{dy}(1-y)^{1/3}=-\frac{1}{3}(1-y)^{-2/3},
 \qquad
 \left|\frac{d}{dy}(1-y)^{1/3}\right|=\frac{1}{3|1-y|^{2/3}}.
 \]
-Hence
+So we get
 \[
 f_Y(y)=f_X\!\left((1-y)^{1/3}\right)\frac{1}{3|1-y|^{2/3}}.
 \]
-Substituting $f_X$:
+Now let's substitute the given PDF of $X$:
 \[
 f_X\!\left((1-y)^{1/3}\right)=\frac{1}{\pi\left(1+\left((1-y)^{1/3}\right)^2\right)}
 =\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}.
 \]
-Therefore
+Finally, putting it all together:
 \[
 f_Y(y)=\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}\cdot \frac{1}{3|1-y|^{2/3}}
 =\boxed{\ \frac{1}{3\pi\,|1-y|^{2/3}\left(1+|1-y|^{2/3}\right)}\ },\qquad y\in\mathbb R.
@@ -70,9 +67,7 @@ f_Y(y)=\frac{1}{\pi\left(1+|1-y|^{2/3}\right)}\cdot \frac{1}{3|1-y|^{2/3}}
 
 \textbf{Solution.}
 
-Letting $f_X(x)=\frac12\cos x$ for $x\in\left[-\frac\pi2,\frac\pi2\right]$.
-
-Computing:
+We're given that $f_X(x)=\frac12\cos x$ for $x\in\left[-\frac\pi2,\frac\pi2\right]$ and $Y = 2 - 3\sin X$. Let's find $\mathbb E[Y]$ first:
 \[
 \mathbb E[Y]=\mathbb E[2-3\sin X]
 =\int_{-\pi/2}^{\pi/2}(2-3\sin x)f_X(x)\,dx
@@ -84,7 +79,7 @@ Computing:
 =2.
 \]
 
-Computing:
+To find the variance, we need $\mathbb E[Y^2]$:
 \[
 \mathbb E[Y^2]=\mathbb E[(2-3\sin X)^2]
 =\int_{-\pi/2}^{\pi/2}(2-3\sin x)^2 f_X(x)\,dx
@@ -93,21 +88,26 @@ Computing:
 \[
 =2\int_{-\pi/2}^{\pi/2}\cos x\,dx-6\int_{-\pi/2}^{\pi/2}\sin x\cos x\,dx+\frac92\int_{-\pi/2}^{\pi/2}\sin^2 x\cos x\,dx.
 \]
+Let me compute each integral separately:
 \[
 2\int_{-\pi/2}^{\pi/2}\cos x\,dx=2\Bigl[\sin x\Bigr]_{-\pi/2}^{\pi/2}=4,
 \qquad
 -6\int_{-\pi/2}^{\pi/2}\sin x\cos x\,dx=-6\Bigl[\frac12\sin^2 x\Bigr]_{-\pi/2}^{\pi/2}=0.
 \]
+For the last integral, I'll use substitution $u=\sin x$, so $du=\cos x\,dx$:
 \[
 \frac92\int_{-\pi/2}^{\pi/2}\sin^2 x\cos x\,dx
 =\frac92\int_{-1}^{1}u^2\,du
 =\frac92\Bigl[\frac{u^3}{3}\Bigr]_{-1}^{1}
 =3.
 \]
+So we have
 \[
 \mathbb E[Y^2]=4+0+3=7,
-\qquad
-\mathrm{Var}(Y)=\mathbb E[Y^2]-\bigl(\mathbb E[Y]\bigr)^2=7-2^2=3.
+\]
+and therefore
+\[
+\boxed{\mathbb E[Y]=2,\qquad \mathrm{Var}(Y)=\mathbb E[Y^2]-\bigl(\mathbb E[Y]\bigr)^2=7-4=3.}
 \]
 
 \section{Problem 3}
@@ -115,25 +115,28 @@ Computing:
 \textbf{Problem.} The random variable $X$ is defined on the entire real axis with the probability density $\phi(x)=\frac{1}{2}e^{-|x|}$. Find the probability density of the random variable $Y=X^2$ and its mathematical expectation.
 
 \textbf{Solution.}
-Let $Y=X^2$. Then $Y\ge 0$ and for $y>0$ the equation $y=x^2$ has two solutions $x=\sqrt y$ and $x=-\sqrt y$. By the change-of-variables formula,
+We need to find the PDF of $Y=X^2$ where $X$ has PDF $f_X(x)=\frac12 e^{-|x|}$. 
+
+Since $Y\ge 0$ and for any $y>0$ the equation $y=x^2$ has two solutions $x=\pm\sqrt y$, we can use the change-of-variables formula:
 \[
 f_Y(y)=\sum_{x:\,x^2=y} f_X(x)\left|\frac{dx}{dy}\right|
 =f_X(\sqrt y)\cdot \frac{1}{2\sqrt y}+f_X(-\sqrt y)\cdot \frac{1}{2\sqrt y},\qquad y>0.
 \]
-Since $f_X(x)=\frac12 e^{-|x|}$, we have $f_X(\sqrt y)=f_X(-\sqrt y)=\frac12 e^{-\sqrt y}$, hence
+Notice that because of the symmetry of $f_X$ (it only depends on $|x|$), we have $f_X(\sqrt y)=f_X(-\sqrt y)=\frac12 e^{-\sqrt y}$. Therefore:
 \[
-f_Y(y)=\frac{e^{-\sqrt y}}{2\sqrt y},\qquad y>0,
-\qquad\text{and}\qquad
-f_Y(y)=0,\ y<0.
+\boxed{f_Y(y)=\begin{cases}
+\frac{e^{-\sqrt y}}{2\sqrt y}, & y>0,\\
+0, & y\le 0.
+\end{cases}}
 \]
-(The density has an integrable singularity at $y=0$.)
+(Note: there's an integrable singularity at $y=0$, but that's okay for a PDF.)
 
-For the expectation,
+Now for the expectation:
 \[
 \mathbb E[Y]=\mathbb E[X^2]
 =\int_{-\infty}^{\infty} x^2 \cdot \frac12 e^{-|x|}\,dx
 =\int_{0}^{\infty} x^2 e^{-x}\,dx
-=2.
+=\boxed{2}.
 \]
 
 \section{Problem 4}
@@ -144,23 +147,21 @@ Remember how to prove that $Cov(X,Y)\leq \sigma_X\sigma_Y$.
 
 \textbf{Solution.}
 
-Assuming $\sigma_X>0$ and $\sigma_Y>0$.
+Let's assume $\sigma_X>0$ and $\sigma_Y>0$ (otherwise the correlation isn't defined). I'll denote the centered variables as \(\widetilde X=X-\mathbb E[X]\) and \(\widetilde Y=Y-\mathbb E[Y]\).
 
-Letting \(\widetilde X=X-\mathbb E[X]\) and \(\widetilde Y=Y-\mathbb E[Y]\).
-
-Rewriting
+The correlation coefficient can be written as
 \[
 \rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}
 =\frac{\mathbb E[\widetilde X\widetilde Y]}{\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}}.
 \]
 
-Applying Cauchy--Schwarz
+We know from the Cauchy--Schwarz inequality that
 \[
 \bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
 \le \sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}.
 \]
 
-Using $|\rho_{XY}|=1$ and rewriting
+Now, if $|\rho_{XY}|=1$, this means we have equality in Cauchy--Schwarz:
 \[
 |\rho_{XY}|=1
 \Longleftrightarrow
@@ -168,44 +169,43 @@ Using $|\rho_{XY}|=1$ and rewriting
 =\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}.
 \]
 
-Considering, for \(t\in\mathbb R\),
+The key insight is to consider the quadratic form for any \(t\in\mathbb R\):
 \[
 0\le \mathbb E[(\widetilde Y-t\widetilde X)^2]
 =\mathbb E[\widetilde Y^2]-2t\,\mathbb E[\widetilde X\widetilde Y]+t^2\mathbb E[\widetilde X^2].
 \]
 
-Minimizing in \(t\) by differentiating
+To find the minimum, let's differentiate with respect to \(t\):
 \[
 \frac{d}{dt}\Bigl(\mathbb E[\widetilde Y^2]-2t\,\mathbb E[\widetilde X\widetilde Y]+t^2\mathbb E[\widetilde X^2]\Bigr)
 =-2\mathbb E[\widetilde X\widetilde Y]+2t\,\mathbb E[\widetilde X^2],
 \]
+Setting this to zero gives us
 \[
--2\mathbb E[\widetilde X\widetilde Y]+2t\,\mathbb E[\widetilde X^2]=0
-\Longleftrightarrow
 t=\frac{\mathbb E[\widetilde X\widetilde Y]}{\mathbb E[\widetilde X^2]}.
 \]
 
-Substituting this \(t\) and computing
+Plugging this back in:
 \[
 \mathbb E[(\widetilde Y-t\widetilde X)^2]
 =\mathbb E[\widetilde Y^2]-\frac{\mathbb E[\widetilde X\widetilde Y]^2}{\mathbb E[\widetilde X^2]}.
 \]
 
-Using
+But from our condition $|\rho_{XY}|=1$, we have
 \[
 \bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
 =\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}
 \Longleftrightarrow
 \mathbb E[\widetilde X\widetilde Y]^2=\mathbb E[\widetilde X^2]\mathbb E[\widetilde Y^2],
 \]
-obtaining
+which means
 \[
 \mathbb E[(\widetilde Y-t\widetilde X)^2]
 =\mathbb E[\widetilde Y^2]-\frac{\mathbb E[\widetilde X^2]\mathbb E[\widetilde Y^2]}{\mathbb E[\widetilde X^2]}
 =0.
 \]
 
-Concluding
+Since the expectation of a non-negative random variable is zero, the variable itself must be zero almost surely:
 \[
 \mathbb E[(\widetilde Y-t\widetilde X)^2]=0
 \Longleftrightarrow
@@ -214,9 +214,9 @@ Concluding
 Y-\mathbb E[Y]=t\,(X-\mathbb E[X])\ \text{a.s.}
 \]
 
-Setting \(c=t\) and computing
+So if we set \(c=t\) and \(b=\mathbb E[Y]-c\,\mathbb E[X]\), we get the linear relationship:
 \[
-Y=cX+b\ \text{a.s.},\qquad b=\mathbb E[Y]-c\,\mathbb E[X].
+Y=cX+b\ \text{a.s.}
 \]
 
 \section{Problem 5}
@@ -225,11 +225,9 @@ Y=cX+b\ \text{a.s.},\qquad b=\mathbb E[Y]-c\,\mathbb E[X].
 
 \textbf{Solution.}
 
-Letting $r=\sqrt{x^2+y^2}$. Writing
-\[
-f_{X,Y}(x,y)=c(1-r)\mathbf 1_{\{r\le 1\}}.
-\]
-Normalizing
+So we have a cone with base as a unit circle. The PDF must have the form $f_{X,Y}(x,y)=c(1-r)\mathbf 1_{\{r\le 1\}}$, where $r=\sqrt{x^2+y^2}$ and $c$ is some constant. Let's find $c$ from the normalization condition.
+
+Converting to polar coordinates:
 \[
 1=\iint_{\mathbb R^2} f_{X,Y}(x,y)\,dx\,dy
 =\int_{0}^{2\pi}\int_{0}^{1}c(1-r)\,r\,dr\,d\theta
@@ -237,48 +235,40 @@ Normalizing
 =2\pi c\left(\frac12-\frac13\right)
 =\frac{\pi c}{3},
 \]
-getting
-\[
-c=\frac{3}{\pi}.
-\]
-Therefore
+so we have $c=\frac{3}{\pi}$. Therefore:
 \[
 f_{X,Y}(x,y)=\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\mathbf 1_{\{x^2+y^2\le 1\}}.
 \]
 
-Computing, for $|x|\le 1$ and $a=\sqrt{1-x^2}$,
+Now let's find the marginal PDFs. For $|x|\le 1$, I'll denote $a=\sqrt{1-x^2}$:
 \[
 f_X(x)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy
 =\int_{-a}^{a}\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
 =\frac{6}{\pi}\int_{0}^{a}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
 =\frac{6}{\pi}\left(a-\int_{0}^{a}\sqrt{x^2+y^2}\,dy\right).
 \]
-Using
+To evaluate this integral, I'll use the antiderivative formula:
 \[
 \int \sqrt{x^2+y^2}\,dy
 =\frac12\Bigl(y\sqrt{x^2+y^2}+x^2\ln\bigl(y+\sqrt{x^2+y^2}\bigr)\Bigr)+C,
 \]
-evaluating
+so we get
 \[
 \int_{0}^{a}\sqrt{x^2+y^2}\,dy
 =\frac12\Bigl(a\sqrt{x^2+a^2}+x^2\ln(a+\sqrt{x^2+a^2})-x^2\ln|x|\Bigr)
 =\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr),
 \]
-therefore, for $|x|\le 1$,
+where in the last step I used $\sqrt{x^2+a^2}=\sqrt{x^2+1-x^2}=1$. Therefore, for $|x|\le 1$:
 \[
 f_X(x)=\frac{6}{\pi}\left(a-\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr)\right)
 =\frac{3}{\pi}\left(a-x^2\ln\!\frac{1+a}{|x|}\right),
 \qquad a=\sqrt{1-x^2},
 \]
-and
-\[
-f_X(x)=0,\qquad |x|>1.
-\]
-Taking limit at x=0
+and $f_X(x)=0$ for $|x|>1$. At $x=0$ we need to take a limit:
 \[
 f_X(0)=\lim_{x\to 0}\frac{3}{\pi}\left(\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}\right)=\frac{3}{\pi}.
 \]
-Computing analogously, for $|y|\le 1$ and $b=\sqrt{1-y^2}$,
+By symmetry, for $|y|\le 1$ with $b=\sqrt{1-y^2}$:
 \[
 f_Y(y)=\frac{3}{\pi}\left(b-y^2\ln\!\frac{1+b}{|y|}\right),
 \qquad b=\sqrt{1-y^2},
@@ -286,14 +276,14 @@ f_Y(y)=\frac{3}{\pi}\left(b-y^2\ln\!\frac{1+b}{|y|}\right),
 f_Y(y)=0\ \text{for } |y|>1.
 \]
 
-Computing, for |x|<1,
+The conditional PDFs are just the ratio of joint to marginal. For $|x|<1$:
 \[
 f_x(y)=f_{Y|X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
 =\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)\mathbf 1_{\{x^2+y^2\le 1\}}}{\frac{3}{\pi}\left(\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}\right)}
 =\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}}\,
 \mathbf 1_{\{|y|\le \sqrt{1-x^2}\}},
 \]
-and $f_x(y)=0$ otherwise. Computing, for $|y|<1$,
+and $f_x(y)=0$ otherwise. Similarly, for $|y|<1$:
 \[
 f_y(x)=f_{X|Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
 =\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}}\,
@@ -301,7 +291,7 @@ f_y(x)=f_{X|Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
 \]
 and $f_y(x)=0$ otherwise.
 
-Checking independence
+Now let's check if $X$ and $Y$ are independent. At the origin:
 \[
 f_{X,Y}(0,0)=\frac{3}{\pi},
 \qquad
@@ -311,9 +301,9 @@ f_Y(0)=\frac{3}{\pi},
 \qquad
 f_X(0)f_Y(0)=\frac{9}{\pi^2}\ne \frac{3}{\pi},
 \]
-getting X,Y depending.
+so $X$ and $Y$ are dependent.
 
-Computing
+What about correlation? By symmetry:
 \[
 \mathbb E[X]=\iint_{\mathbb R^2} x f_{X,Y}(x,y)\,dx\,dy
 =\iint_{\mathbb R^2} (-x) f_{X,Y}(-x,y)\,dx\,dy
@@ -332,13 +322,14 @@ Computing
 =-\mathbb E[XY]
 \Longrightarrow \mathbb E[XY]=0,
 \]
-therefore
+So we have
 \[
 \mathrm{Cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y]=0,
 \qquad
 \rho_{XY}=0.
 \]
 
+So to summarize:
 \[
 \boxed{
 \begin{aligned}
@@ -347,7 +338,7 @@ therefore
 &f_Y(y)=\frac{3}{\pi}\left(\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}\right)\mathbf 1_{\{|y|\le 1\}},\\[2mm]
 &f_x(y)=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}}\,\mathbf 1_{\{|x|<1,\ |y|\le \sqrt{1-x^2}\}},\\[2mm]
 &f_y(x)=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}}\,\mathbf 1_{\{|y|<1,\ |x|\le \sqrt{1-y^2}\}},\\[2mm]
-&X,Y\ \text{depending},\qquad \mathrm{Cov}(X,Y)=0,\qquad \rho_{XY}=0.
+&X,Y\ \text{dependent},\qquad \mathrm{Cov}(X,Y)=0,\qquad \rho_{XY}=0.
 \end{aligned}
 }
 \]
@@ -362,8 +353,9 @@ b) What is the joint PDF of $(R,\theta)$ if $(X,Y)$ is Uniform on the unit disk,
 
 \textbf{Solution.}
 
-Letting $x=r\cos\theta$, $y=r\sin\theta$, $r\ge 0$, $\theta\in[0,2\pi)$.
-Computing the Jacobian,
+\textbf{Part (a):} Let's convert to polar coordinates: $x=r\cos\theta$, $y=r\sin\theta$ where $r\ge 0$ and $\theta\in[0,2\pi)$.
+
+The Jacobian of the transformation is
 \[
 \left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
 =
@@ -374,7 +366,7 @@ Computing the Jacobian,
 =r,
 \qquad dx\,dy=r\,dr\,d\theta.
 \]
-Substituting into the change of variables formula,
+Using the change of variables formula:
 \[
 f_{R,\Theta}(r,\theta)
 =f_{X,Y}(r\cos\theta,r\sin\theta)\left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
@@ -382,45 +374,43 @@ f_{R,\Theta}(r,\theta)
 =g(r^2)\,r,
 \qquad r\ge 0,\ \theta\in[0,2\pi).
 \]
-Computing the normalization integral,
+Notice that the joint PDF doesn't depend on $\theta$ at all! Let me verify this leads to independence. The normalization gives:
 \[
 1=\int_0^{2\pi}\int_0^\infty f_{R,\Theta}(r,\theta)\,dr\,d\theta
 =\int_0^{2\pi}\int_0^\infty g(r^2)\,r\,dr\,d\theta
 =2\pi\int_0^\infty g(r^2)\,r\,dr,
 \]
+so
 \[
 \int_0^\infty g(r^2)\,r\,dr=\frac{1}{2\pi}.
 \]
-Computing the marginal of $\Theta$,
+The marginal of $\Theta$ is:
 \[
 f_\Theta(\theta)=\int_0^\infty f_{R,\Theta}(r,\theta)\,dr
 =\int_0^\infty g(r^2)\,r\,dr
 =\frac{1}{2\pi},
 \qquad \theta\in[0,2\pi).
 \]
-Computing the marginal of $R$,
+The marginal of $R$ is:
 \[
 f_R(r)=\int_0^{2\pi} f_{R,\Theta}(r,\theta)\,d\theta
 =\int_0^{2\pi} g(r^2)\,r\,d\theta
 =2\pi r g(r^2),
 \qquad r\ge 0.
 \]
-Factoring,
+We can check:
 \[
 f_R(r)f_\Theta(\theta)=\bigl(2\pi r g(r^2)\bigr)\left(\frac{1}{2\pi}\right)=g(r^2)\,r=f_{R,\Theta}(r,\theta),
 \]
-getting $R$ and $\Theta$ independent.
-Interpreting $f(x,y)=g(x^2+y^2)$ as rotation-invariant, getting $\Theta$ uniform and $R$ radial.
+so $R$ and $\Theta$ are independent! This makes intuitive sense: a spherically symmetric distribution is rotationally invariant, so the angle should be uniformly distributed and independent of the distance from the origin.
 
-Substituting the uniform-on-disk density,
-\[
-f_{X,Y}(x,y)=\frac{1}{\pi}\mathbf 1_{\{x^2+y^2\le 1\}}
-=\frac{1}{\pi}\mathbf 1_{\{0\le r\le 1\}},
-\]
+\textbf{Part (b):} Let's apply this to the two specific cases.
+
+\textbf{Uniform on the unit disk:} Here $f_{X,Y}(x,y)=\frac{1}{\pi}\mathbf 1_{\{x^2+y^2\le 1\}}$, which has the form $g(x^2+y^2)$ with $g(u)=\frac{1}{\pi}\mathbf 1_{\{u\le 1\}}$. So:
 \[
 f_{R,\Theta}(r,\theta)=\frac{r}{\pi}\mathbf 1_{\{0\le r\le 1\}}\mathbf 1_{\{0\le\theta<2\pi\}}.
 \]
-Integrating for marginals,
+The marginals are:
 \[
 f_\Theta(\theta)=\int_0^1 \frac{r}{\pi}\,dr=\frac{1}{2\pi},\qquad 0\le\theta<2\pi,
 \]
@@ -428,21 +418,23 @@ f_\Theta(\theta)=\int_0^1 \frac{r}{\pi}\,dr=\frac{1}{2\pi},\qquad 0\le\theta<2\p
 f_R(r)=\int_0^{2\pi}\frac{r}{\pi}\,d\theta=2r,\qquad 0\le r\le 1.
 \]
 
-Substituting the i.i.d.\ $N(0,1)$ density,
+\textbf{i.i.d.\ $N(0,1)$:} When $X,Y$ are independent standard normals, we have
 \[
 f_{X,Y}(x,y)=\frac{1}{2\pi}\exp\!\left(-\frac{x^2+y^2}{2}\right)
 =\frac{1}{2\pi}\exp\!\left(-\frac{r^2}{2}\right),
 \]
+so $g(u)=\frac{1}{2\pi}e^{-u/2}$. This gives:
 \[
 f_{R,\Theta}(r,\theta)=\frac{r}{2\pi}\exp\!\left(-\frac{r^2}{2}\right)\mathbf 1_{\{r\ge 0\}}\mathbf 1_{\{0\le\theta<2\pi\}}.
 \]
-Integrating for marginals,
+The marginals are:
 \[
 f_\Theta(\theta)=\int_0^\infty \frac{r}{2\pi}e^{-r^2/2}\,dr=\frac{1}{2\pi},\qquad 0\le\theta<2\pi,
 \]
 \[
 f_R(r)=\int_0^{2\pi}\frac{r}{2\pi}e^{-r^2/2}\,d\theta=r e^{-r^2/2},\qquad r\ge 0.
 \]
+(This is the Rayleigh distribution!)
 
 \[
 \boxed{
