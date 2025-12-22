@@ -143,116 +143,214 @@ For the expectation,
 Remember how to prove that $Cov(X,Y)\leq \sigma_X\sigma_Y$.
 
 \textbf{Solution.}
-Assume $\sigma_X>0$ and $\sigma_Y>0$ (otherwise one of the variables is a.s.\ constant and the claim is trivial).
-Let $\widetilde X=X-\mathbb E[X]$ and $\widetilde Y=Y-\mathbb E[Y]$. Then
+
+Assuming $\sigma_X>0$ and $\sigma_Y>0$.
+
+Letting \(\widetilde X=X-\mathbb E[X]\) and \(\widetilde Y=Y-\mathbb E[Y]\).
+
+Rewriting
 \[
 \rho_{XY}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\sigma_Y}
-\;=\;\frac{\mathbb E[\widetilde X\widetilde Y]}{\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}}.
+=\frac{\mathbb E[\widetilde X\widetilde Y]}{\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}}.
 \]
-By the Cauchy--Schwarz inequality,
+
+Applying Cauchy--Schwarz
 \[
 \bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
-\le \sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]},
+\le \sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}.
 \]
-and equality holds if and only if $\widetilde Y=c\,\widetilde X$ a.s.\ for some constant $c$.
 
-If $|\rho_{XY}|=1$, then the Cauchy--Schwarz inequality is an equality, hence there exists a constant $c$ such that
+Using $|\rho_{XY}|=1$ and rewriting
 \[
-Y-\mathbb E[Y]=c\,(X-\mathbb E[X]) \quad \text{a.s.}
+|\rho_{XY}|=1
+\Longleftrightarrow
+\bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
+=\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}.
 \]
-Equivalently,
+
+Considering, for \(t\in\mathbb R\),
 \[
-Y=cX+b \quad \text{a.s.}, \qquad b=\mathbb E[Y]-c\,\mathbb E[X],
+0\le \mathbb E[(\widetilde Y-t\widetilde X)^2]
+=\mathbb E[\widetilde Y^2]-2t\,\mathbb E[\widetilde X\widetilde Y]+t^2\mathbb E[\widetilde X^2].
 \]
-which is a linear functional relationship between $X$ and $Y$.
+
+Minimizing in \(t\) by differentiating
+\[
+\frac{d}{dt}\Bigl(\mathbb E[\widetilde Y^2]-2t\,\mathbb E[\widetilde X\widetilde Y]+t^2\mathbb E[\widetilde X^2]\Bigr)
+=-2\mathbb E[\widetilde X\widetilde Y]+2t\,\mathbb E[\widetilde X^2],
+\]
+\[
+-2\mathbb E[\widetilde X\widetilde Y]+2t\,\mathbb E[\widetilde X^2]=0
+\Longleftrightarrow
+t=\frac{\mathbb E[\widetilde X\widetilde Y]}{\mathbb E[\widetilde X^2]}.
+\]
+
+Substituting this \(t\) and computing
+\[
+\mathbb E[(\widetilde Y-t\widetilde X)^2]
+=\mathbb E[\widetilde Y^2]-\frac{\mathbb E[\widetilde X\widetilde Y]^2}{\mathbb E[\widetilde X^2]}.
+\]
+
+Using
+\[
+\bigl|\mathbb E[\widetilde X\widetilde Y]\bigr|
+=\sqrt{\mathbb E[\widetilde X^2]}\sqrt{\mathbb E[\widetilde Y^2]}
+\Longleftrightarrow
+\mathbb E[\widetilde X\widetilde Y]^2=\mathbb E[\widetilde X^2]\mathbb E[\widetilde Y^2],
+\]
+obtaining
+\[
+\mathbb E[(\widetilde Y-t\widetilde X)^2]
+=\mathbb E[\widetilde Y^2]-\frac{\mathbb E[\widetilde X^2]\mathbb E[\widetilde Y^2]}{\mathbb E[\widetilde X^2]}
+=0.
+\]
+
+Concluding
+\[
+\mathbb E[(\widetilde Y-t\widetilde X)^2]=0
+\Longleftrightarrow
+\widetilde Y-t\widetilde X=0 \ \text{a.s.}
+\Longleftrightarrow
+Y-\mathbb E[Y]=t\,(X-\mathbb E[X])\ \text{a.s.}
+\]
+
+Setting \(c=t\) and computing
+\[
+Y=cX+b\ \text{a.s.},\qquad b=\mathbb E[Y]-c\,\mathbb E[X].
+\]
 
 \section{Problem 5}
 
 \textbf{Problem.} The distribution surface (joint PDF) of the two-dimensional random variable $(X,Y)$ is a right circular cone, the base of which is a circle centered at the origin with a unit radius. Outside this circle, the joint PDF of this two-dimensional random variable $(X,Y)$ is zero. Find the joint PDF $f(x,y)$, the marginal PDFs and the conditional PDFs $f_x(y)$ and $f_y(x)$. Are the random variables $X$ and $Y$ dependent and/or correlated?
 
 \textbf{Solution.}
-Let $r=\sqrt{x^2+y^2}$. A natural ``cone'' density over the unit disk is linear in $r$ and vanishes at the boundary $r=1$, hence
+
+Letting $r=\sqrt{x^2+y^2}$. Writing
 \[
-f_{X,Y}(x,y)=
-\begin{cases}
-c(1-r), & r\le 1,\\
-0, & r>1,
-\end{cases}
-\qquad r=\sqrt{x^2+y^2},
+f_{X,Y}(x,y)=c(1-r)\mathbf 1_{\{r\le 1\}}.
 \]
-with a constant $c$ determined by normalization. In polar coordinates $(r,\theta)$, $dx\,dy=r\,dr\,d\theta$, so
+Normalizing
 \[
 1=\iint_{\mathbb R^2} f_{X,Y}(x,y)\,dx\,dy
-=\int_0^{2\pi}\int_0^1 c(1-r)\,r\,dr\,d\theta
-=2\pi c\int_0^1 (r-r^2)\,dr
+=\int_{0}^{2\pi}\int_{0}^{1}c(1-r)\,r\,dr\,d\theta
+=2\pi c\int_{0}^{1}(r-r^2)\,dr
 =2\pi c\left(\frac12-\frac13\right)
 =\frac{\pi c}{3},
 \]
-thus $c=\frac{3}{\pi}$. Therefore
+getting
 \[
-f_{X,Y}(x,y)=
-\begin{cases}
-\dfrac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr), & x^2+y^2\le 1,\\[6pt]
-0, & x^2+y^2>1.
-\end{cases}
+c=\frac{3}{\pi}.
+\]
+Therefore
+\[
+f_{X,Y}(x,y)=\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\mathbf 1_{\{x^2+y^2\le 1\}}.
 \]
 
-\medskip
-\noindent\textbf{Marginals.}
-By symmetry, $f_X=f_Y$. For $|x|<1$ we integrate over $y\in\bigl[-\sqrt{1-x^2},\sqrt{1-x^2}\bigr]$:
+Computing, for $|x|\le 1$ and $a=\sqrt{1-x^2}$,
 \[
-f_X(x)=\int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} \frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)\,dy.
-\]
-Let $a=\sqrt{1-x^2}$. Using evenness in $y$,
-\[
-f_X(x)=\frac{6}{\pi}\int_{0}^{a}\left(1-\sqrt{x^2+y^2}\right)\,dy
+f_X(x)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy
+=\int_{-a}^{a}\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
+=\frac{6}{\pi}\int_{0}^{a}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\,dy
 =\frac{6}{\pi}\left(a-\int_{0}^{a}\sqrt{x^2+y^2}\,dy\right).
 \]
-Recall
+Using
 \[
 \int \sqrt{x^2+y^2}\,dy
-=\frac{y}{2}\sqrt{x^2+y^2}+\frac{x^2}{2}\ln\!\left(y+\sqrt{x^2+y^2}\right)+C.
+=\frac12\Bigl(y\sqrt{x^2+y^2}+x^2\ln\bigl(y+\sqrt{x^2+y^2}\bigr)\Bigr)+C,
 \]
-Since $\sqrt{x^2+a^2}=1$, we get
+evaluating
 \[
 \int_{0}^{a}\sqrt{x^2+y^2}\,dy
-=\frac{a}{2}\cdot 1+\frac{x^2}{2}\ln(a+1)-\frac{x^2}{2}\ln|x|.
+=\frac12\Bigl(a\sqrt{x^2+a^2}+x^2\ln(a+\sqrt{x^2+a^2})-x^2\ln|x|\Bigr)
+=\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr),
 \]
-Hence for $|x|<1$,
+therefore, for $|x|\le 1$,
 \[
-f_X(x)=\frac{6}{\pi}\left(a-\frac{a}{2}-\frac{x^2}{2}\ln\!\frac{a+1}{|x|}\right)
+f_X(x)=\frac{6}{\pi}\left(a-\frac12\Bigl(a+x^2\ln(1+a)-x^2\ln|x|\Bigr)\right)
 =\frac{3}{\pi}\left(a-x^2\ln\!\frac{1+a}{|x|}\right),
-\qquad a=\sqrt{1-x^2}.
+\qquad a=\sqrt{1-x^2},
 \]
-And $f_X(x)=0$ for $|x|\ge 1$. (At $x=0$ the formula is understood by continuity and gives $f_X(0)=\frac{3}{\pi}$.)
-By symmetry,
+and
 \[
-f_Y(y)=\frac{3}{\pi}\left(\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}\right)\mathbf 1_{\{|y|<1\}}.
+f_X(x)=0,\qquad |x|>1.
+\]
+Taking limit at x=0
+\[
+f_X(0)=\lim_{x\to 0}\frac{3}{\pi}\left(\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}\right)=\frac{3}{\pi}.
+\]
+Computing analogously, for $|y|\le 1$ and $b=\sqrt{1-y^2}$,
+\[
+f_Y(y)=\frac{3}{\pi}\left(b-y^2\ln\!\frac{1+b}{|y|}\right),
+\qquad b=\sqrt{1-y^2},
+\qquad
+f_Y(y)=0\ \text{for } |y|>1.
 \]
 
-\medskip
-\noindent\textbf{Conditional densities.}
-For $|x|<1$ and $|y|\le \sqrt{1-x^2}$,
+Computing, for |x|<1,
 \[
-f_{Y\mid X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
-=\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)}{f_X(x)},
+f_x(y)=f_{Y|X=x}(y)=\frac{f_{X,Y}(x,y)}{f_X(x)}
+=\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)\mathbf 1_{\{x^2+y^2\le 1\}}}{\frac{3}{\pi}\left(\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}\right)}
+=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}}\,
+\mathbf 1_{\{|y|\le \sqrt{1-x^2}\}},
 \]
-and $f_{Y\mid X=x}(y)=0$ otherwise. Similarly, for $|y|<1$ and $|x|\le \sqrt{1-y^2}$,
+and $f_x(y)=0$ otherwise. Computing, for $|y|<1$,
 \[
-f_{X\mid Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
-=\frac{\frac{3}{\pi}\left(1-\sqrt{x^2+y^2}\right)}{f_Y(y)},
+f_y(x)=f_{X|Y=y}(x)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}}\,
+\mathbf 1_{\{|x|\le \sqrt{1-y^2}\}},
 \]
-and $0$ otherwise.
+and $f_y(x)=0$ otherwise.
 
-\medskip
-\noindent\textbf{Dependence and correlation.}
-$X$ and $Y$ are \emph{dependent} since the support is not a rectangle: if $|X|$ is close to $1$, then necessarily $|Y|$ must be small (because $X^2+Y^2\le 1$).
-
-They are \emph{uncorrelated}: by symmetry $\mathbb E[X]=\mathbb E[Y]=0$, and
+Checking independence
 \[
-\mathbb E[XY]=\iint xy\,f_{X,Y}(x,y)\,dx\,dy=0
+f_{X,Y}(0,0)=\frac{3}{\pi},
+\qquad
+f_X(0)=\frac{3}{\pi},
+\qquad
+f_Y(0)=\frac{3}{\pi},
+\qquad
+f_X(0)f_Y(0)=\frac{9}{\pi^2}\ne \frac{3}{\pi},
 \]
-because the integrand is odd in $x$ (or in $y$) while the domain and $f_{X,Y}$ are even. Hence $\mathrm{Cov}(X,Y)=0$ and the correlation coefficient is $0$.
+getting X,Y depending.
+
+Computing
+\[
+\mathbb E[X]=\iint_{\mathbb R^2} x f_{X,Y}(x,y)\,dx\,dy
+=\iint_{\mathbb R^2} (-x) f_{X,Y}(-x,y)\,dx\,dy
+=-\mathbb E[X]
+\Longrightarrow \mathbb E[X]=0,
+\]
+\[
+\mathbb E[Y]=\iint_{\mathbb R^2} y f_{X,Y}(x,y)\,dx\,dy
+=\iint_{\mathbb R^2} (-y) f_{X,Y}(x,-y)\,dx\,dy
+=-\mathbb E[Y]
+\Longrightarrow \mathbb E[Y]=0,
+\]
+\[
+\mathbb E[XY]=\iint_{\mathbb R^2} xy f_{X,Y}(x,y)\,dx\,dy
+=\iint_{\mathbb R^2} (-x)y f_{X,Y}(-x,y)\,dx\,dy
+=-\mathbb E[XY]
+\Longrightarrow \mathbb E[XY]=0,
+\]
+therefore
+\[
+\mathrm{Cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y]=0,
+\qquad
+\rho_{XY}=0.
+\]
+
+\[
+\boxed{
+\begin{aligned}
+&f_{X,Y}(x,y)=\frac{3}{\pi}\Bigl(1-\sqrt{x^2+y^2}\Bigr)\mathbf 1_{\{x^2+y^2\le 1\}},\\[2mm]
+&f_X(x)=\frac{3}{\pi}\left(\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}\right)\mathbf 1_{\{|x|\le 1\}},\\[2mm]
+&f_Y(y)=\frac{3}{\pi}\left(\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}\right)\mathbf 1_{\{|y|\le 1\}},\\[2mm]
+&f_x(y)=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-x^2}-x^2\ln\!\frac{1+\sqrt{1-x^2}}{|x|}}\,\mathbf 1_{\{|x|<1,\ |y|\le \sqrt{1-x^2}\}},\\[2mm]
+&f_y(x)=\frac{1-\sqrt{x^2+y^2}}{\sqrt{1-y^2}-y^2\ln\!\frac{1+\sqrt{1-y^2}}{|y|}}\,\mathbf 1_{\{|y|<1,\ |x|\le \sqrt{1-y^2}\}},\\[2mm]
+&X,Y\ \text{depending},\qquad \mathrm{Cov}(X,Y)=0,\qquad \rho_{XY}=0.
+\end{aligned}
+}
+\]
 
 \section{Problem 6}
 
@@ -263,66 +361,97 @@ a) Prove that $R$ and $\theta$ are independent and explain intuitively why this 
 b) What is the joint PDF of $(R,\theta)$ if $(X,Y)$ is Uniform on the unit disk, i.\ e.\ $x^2+y^2\leq 1$? If $X,Y$ are i.\ i.\ d.\ $N(0,1)$?
 
 \textbf{Solution.}
-\textbf{a) Independence of $R$ and $\theta$.}
-Use the change of variables $(x,y)=(r\cos\theta,r\sin\theta)$ with Jacobian $|J|=r$. Then for $r\ge 0$ and $\theta\in[0,2\pi)$,
-\[
-f_{R,\Theta}(r,\theta)=f_{X,Y}(r\cos\theta,r\sin\theta)\,r
-=g(r^2)\,r.
-\]
-This expression does not depend on $\theta$. The marginal density of $\Theta$ is therefore constant:
-\[
-f_{\Theta}(\theta)=\int_{0}^{\infty} g(r^2)\,r\,dr.
-\]
-Since $f_{R,\Theta}$ must integrate to $1$,
-\[
-1=\int_{0}^{2\pi}\int_{0}^{\infty} g(r^2)\,r\,dr\,d\theta
-=2\pi\int_{0}^{\infty} g(r^2)\,r\,dr,
-\]
-so $\int_{0}^{\infty} g(r^2)\,r\,dr=\frac{1}{2\pi}$ and hence
-\[
-f_{\Theta}(\theta)=\frac{1}{2\pi},\qquad \theta\in[0,2\pi),
-\]
-i.e.\ $\Theta$ is uniform on $[0,2\pi)$. Also
-\[
-f_R(r)=\int_{0}^{2\pi} f_{R,\Theta}(r,\theta)\,d\theta
-=2\pi r g(r^2),\qquad r\ge 0.
-\]
-Thus
-\[
-f_{R,\Theta}(r,\theta)=\underbrace{(2\pi r g(r^2))}_{f_R(r)}\cdot \underbrace{\frac{1}{2\pi}}_{f_\Theta(\theta)},
-\]
-so $R$ and $\Theta$ are independent.
 
-\medskip
-\noindent\textbf{Intuition.}
-Spherical symmetry means the distribution is invariant under rotations, so the angle cannot favor any direction (hence uniform), while the radius controls how far from the origin we are; these two pieces of information do not interact.
-
-\medskip
-\noindent\textbf{b) Two examples.}
-
-\smallskip
-\noindent\emph{Uniform on the unit disk.}
-If $(X,Y)$ is uniform on $\{x^2+y^2\le 1\}$, then
+Letting $x=r\cos\theta$, $y=r\sin\theta$, $r\ge 0$, $\theta\in[0,2\pi)$.
+Computing the Jacobian,
 \[
-f_{X,Y}(x,y)=\frac{1}{\pi}\mathbf 1_{\{x^2+y^2\le 1\}}.
+\left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
+=
+\begin{vmatrix}
+\cos\theta & -r\sin\theta\\
+\sin\theta & r\cos\theta
+\end{vmatrix}
+=r,
+\qquad dx\,dy=r\,dr\,d\theta.
 \]
-Hence for $0\le r\le 1$ and $\theta\in[0,2\pi)$,
+Substituting into the change of variables formula,
 \[
-f_{R,\Theta}(r,\theta)=\frac{1}{\pi}\,r,
+f_{R,\Theta}(r,\theta)
+=f_{X,Y}(r\cos\theta,r\sin\theta)\left|\frac{\partial(x,y)}{\partial(r,\theta)}\right|
+=g\!\left((r\cos\theta)^2+(r\sin\theta)^2\right)\,r
+=g(r^2)\,r,
+\qquad r\ge 0,\ \theta\in[0,2\pi).
 \]
-and $0$ otherwise. In particular $f_\Theta(\theta)=\frac{1}{2\pi}$ and $f_R(r)=2r$ for $0\le r\le 1$.
+Computing the normalization integral,
+\[
+1=\int_0^{2\pi}\int_0^\infty f_{R,\Theta}(r,\theta)\,dr\,d\theta
+=\int_0^{2\pi}\int_0^\infty g(r^2)\,r\,dr\,d\theta
+=2\pi\int_0^\infty g(r^2)\,r\,dr,
+\]
+\[
+\int_0^\infty g(r^2)\,r\,dr=\frac{1}{2\pi}.
+\]
+Computing the marginal of $\Theta$,
+\[
+f_\Theta(\theta)=\int_0^\infty f_{R,\Theta}(r,\theta)\,dr
+=\int_0^\infty g(r^2)\,r\,dr
+=\frac{1}{2\pi},
+\qquad \theta\in[0,2\pi).
+\]
+Computing the marginal of $R$,
+\[
+f_R(r)=\int_0^{2\pi} f_{R,\Theta}(r,\theta)\,d\theta
+=\int_0^{2\pi} g(r^2)\,r\,d\theta
+=2\pi r g(r^2),
+\qquad r\ge 0.
+\]
+Factoring,
+\[
+f_R(r)f_\Theta(\theta)=\bigl(2\pi r g(r^2)\bigr)\left(\frac{1}{2\pi}\right)=g(r^2)\,r=f_{R,\Theta}(r,\theta),
+\]
+getting $R$ and $\Theta$ independent.
+Interpreting $f(x,y)=g(x^2+y^2)$ as rotation-invariant, getting $\Theta$ uniform and $R$ radial.
 
-\smallskip
-\noindent\emph{$X,Y$ i.i.d.\ $N(0,1)$.}
-Then
+Substituting the uniform-on-disk density,
+\[
+f_{X,Y}(x,y)=\frac{1}{\pi}\mathbf 1_{\{x^2+y^2\le 1\}}
+=\frac{1}{\pi}\mathbf 1_{\{0\le r\le 1\}},
+\]
+\[
+f_{R,\Theta}(r,\theta)=\frac{r}{\pi}\mathbf 1_{\{0\le r\le 1\}}\mathbf 1_{\{0\le\theta<2\pi\}}.
+\]
+Integrating for marginals,
+\[
+f_\Theta(\theta)=\int_0^1 \frac{r}{\pi}\,dr=\frac{1}{2\pi},\qquad 0\le\theta<2\pi,
+\]
+\[
+f_R(r)=\int_0^{2\pi}\frac{r}{\pi}\,d\theta=2r,\qquad 0\le r\le 1.
+\]
+
+Substituting the i.i.d.\ $N(0,1)$ density,
 \[
 f_{X,Y}(x,y)=\frac{1}{2\pi}\exp\!\left(-\frac{x^2+y^2}{2}\right)
-=g(x^2+y^2),\quad g(u)=\frac{1}{2\pi}e^{-u/2}.
+=\frac{1}{2\pi}\exp\!\left(-\frac{r^2}{2}\right),
 \]
-So for $r\ge 0$ and $\theta\in[0,2\pi)$,
 \[
-f_{R,\Theta}(r,\theta)=\frac{1}{2\pi}e^{-r^2/2}\,r,
+f_{R,\Theta}(r,\theta)=\frac{r}{2\pi}\exp\!\left(-\frac{r^2}{2}\right)\mathbf 1_{\{r\ge 0\}}\mathbf 1_{\{0\le\theta<2\pi\}}.
 \]
-and again $\Theta\sim \mathrm{Unif}[0,2\pi)$ while $R$ has the Rayleigh density $f_R(r)=r e^{-r^2/2}$ for $r\ge 0$.
+Integrating for marginals,
+\[
+f_\Theta(\theta)=\int_0^\infty \frac{r}{2\pi}e^{-r^2/2}\,dr=\frac{1}{2\pi},\qquad 0\le\theta<2\pi,
+\]
+\[
+f_R(r)=\int_0^{2\pi}\frac{r}{2\pi}e^{-r^2/2}\,d\theta=r e^{-r^2/2},\qquad r\ge 0.
+\]
+
+\[
+\boxed{
+\begin{aligned}
+&f_{R,\Theta}(r,\theta)=g(r^2)\,r,\qquad r\ge 0,\ 0\le\theta<2\pi,\\[2mm]
+&f_{R,\Theta}(r,\theta)=\frac{r}{\pi}\mathbf 1_{\{0\le r\le 1\}}\mathbf 1_{\{0\le\theta<2\pi\}},\\[2mm]
+&f_{R,\Theta}(r,\theta)=\frac{r}{2\pi}\exp\!\left(-\frac{r^2}{2}\right)\mathbf 1_{\{r\ge 0\}}\mathbf 1_{\{0\le\theta<2\pi\}}.
+\end{aligned}
+}
+\]
 
 \end{document}
